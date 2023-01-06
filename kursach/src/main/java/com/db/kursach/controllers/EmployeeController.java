@@ -21,6 +21,9 @@ public class EmployeeController {
     @GetMapping("/")
     public String employees(@RequestParam(name = "fullName",required = false) String fullName, Model model){
         model.addAttribute("employees",employeeService.listEmployees(fullName));
+        String searchString = "";
+        if (fullName != null) searchString =fullName;
+        model.addAttribute("searchString", searchString);
         return "employees";
     }
     @PostMapping("/employee/create")

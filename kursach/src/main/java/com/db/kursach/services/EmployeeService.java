@@ -19,8 +19,9 @@ import java.util.List;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ImageRepository imageRepository;
+
     public List<Employee> listEmployees(String fullName){
-        if(fullName!=null) return employeeRepository.findByFullName(fullName);
+        if(fullName!=null) return employeeRepository.findByFullNameContaining(fullName);
         return employeeRepository.findAll();
     }
     public void saveEmployee(Employee employee, MultipartFile file) throws IOException {

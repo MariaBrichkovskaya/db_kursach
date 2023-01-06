@@ -7,9 +7,9 @@
 <h1>CAFE</h1><hr>
 <h4>Работники нашего прекрасного заведения</h4>
 <form action="/" method="get">
-    Поиск по ФИО <input type="text" name="fullName">
-    <input type="submit" value="Поиск"/>
+    Поиск по ФИО <input type="search" id="fio" name="fullName" oninput="form.submit()" value="${searchString}" autofocus onfocus="fio.setSelectionRange(fio.value.length, fio.value.length)"/>
 </form>
+
 <#list employees as employee>
     <div>
         <p><b>${employee.fullName}</b> ${employee.position1.name} | <a href="/employee/${employee.id}">Подробнее</a></p>
