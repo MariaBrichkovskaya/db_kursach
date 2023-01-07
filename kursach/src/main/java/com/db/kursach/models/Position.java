@@ -14,12 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Position {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "position_name")
     private String name;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "position1")
     private List<Employee> employees;
-
 }

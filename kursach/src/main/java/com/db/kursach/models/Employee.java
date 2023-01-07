@@ -1,8 +1,11 @@
 package com.db.kursach.models;
+
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private Long id;
     @Column(name = "employee_full_name")
@@ -25,7 +28,12 @@ public class Employee {
     private String phone;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "employee")
     private List<Image> images=new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "waiter")
+    private List<Order> orders;
+
     private Long previewImageId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
     private Position position1;
