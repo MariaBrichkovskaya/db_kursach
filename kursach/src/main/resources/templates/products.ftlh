@@ -4,7 +4,7 @@
     <title>CAFE</title>
 </head>
 <body>
-<h1>CAFE</h1><hr>
+<h1>Продукты</h1><hr>
 <h4>Продукты на складе</h4>
 
 <#list products as product>
@@ -12,7 +12,7 @@
         <p> ${product.name} | <a href="/product/${product.id}">Подробнее</a></p>
     </div>
 <#else>
-    <h3>Sklad pyst</h3>
+    <h3>Продукты на складе отсутствуют</h3>
 </#list>
 <hr>
 </body>

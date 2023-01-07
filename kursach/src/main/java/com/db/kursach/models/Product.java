@@ -19,6 +19,17 @@ public class Product {
     private Long id;
     @Column(name = "product_name")
     private String name;
+    @Column(name = "amount_in_stock")
+    private Long amount;
+    @Column(name = "calories")
+    private Long calories;
+    @Column(name = "unit_weight")
+    private int unitWeight;
+    @Column(name = "product_description")
+    private String description;
+    @Column(name = "product_price")
+    private Double price;
+    //private String priceStr=String.format("%.2f", price);;
     /*@Column(name = "order_price")
     private Double price;
     @Column(name = "other_info", columnDefinition = "text")
