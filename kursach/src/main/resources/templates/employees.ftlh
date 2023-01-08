@@ -25,7 +25,7 @@
 <h3>Добавление нового сотрудника</h3>
 <form action="/employee/create" method="post" enctype="multipart/form-data">
     Фио <input type="text" name="fullName"/><br><br>
-    Должность <p><select name="position_id">
+    Должность <p><select name="position1.id">
             <option value="2">Менеджер</option>
             <option value="3">Бариста</option></select></p><br>
     Опыт работы <input type="number" min="0" name="experience"/><br><br>
