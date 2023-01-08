@@ -27,8 +27,8 @@ public class EmployeeController {
         return "employees";
     }
     @PostMapping("/employee/create")
-    public String createEmployee(@RequestParam("file") MultipartFile file, Employee employee) throws IOException {
-        employeeService.saveEmployee(employee,file);
+    public String createEmployee(Employee employee){
+        employeeService.saveEmployee(employee);
         return "redirect:/";
     }
     @PostMapping("/employee/{id}/trash")

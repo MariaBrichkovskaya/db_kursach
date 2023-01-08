@@ -24,16 +24,9 @@ public class EmployeeService {
         if(fullName!=null) return employeeRepository.findByFullNameContaining(fullName);
         return employeeRepository.findAll();
     }
-    public void saveEmployee(Employee employee, MultipartFile file) throws IOException {
-        Image image;
-        if(file.getSize()!=0){
-            image=toImageEntity(file);
-            //тут если что превьюшку тру делать
-            employee.addImageToEmployee(image);
-        }
+    public void saveEmployee(Employee employee) {
+
         log.info("Saving new Employee.{}",employee);
-        //Employee employeeFromDB=employeeRepository.save(employee);
-        //employeeFromDB.setPreviewImageId(employeeFromDB.getImages().get(0).getId());
         employeeRepository.save(employee);
     }
     public void saveImage( MultipartFile file,Long id) throws IOException {
@@ -47,20 +40,7 @@ public class EmployeeService {
         employee.addImageToEmployee(image);
         employeeRepository.save(employee);
 
-        /*System.out.println(employee.getImages().get(0).getOriginalFileName());
-        System.out.println(employee.getFullName());*/
-        /*if(file.getSize()!=0) {
-            image = toImageEntity(file);
-            List<Image> images=new ArrayList<>();
-            images.add(image);
-            Employee employee=employeeRepository.findById(id).orElseThrow();
-            employee.addImageToEmployee(image);
-            employee.setImages(images);
-            //employee.setPreviewImageId(image.getId());
-            //employeeRepository.save(employee);
-            //employeeRepository.findById(employee.getId()).orElse(null).addImageToEmployee(image);
-            //employeeRepository.findById(employee.getId()).orElse(null).setPreviewImageId(image.getId());
-        }*/
+
     }
 
 

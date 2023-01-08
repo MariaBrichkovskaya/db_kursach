@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -26,8 +29,11 @@ public class Employee {
     private int experience;
     @Column(name = "employee_phone_number")
     private String phone;
-    /*@Column(name = "preview_image_id")
-    private Long previewImageId;*/
+    @Column(name = "salary")
+    private String salary;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "employment_date")
+    private Date date;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "employee")
     private List<Image> images=new ArrayList<>();
 
@@ -40,10 +46,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
     private Position position1;
-    /*@Column(name = "salary")
-    private String salary;*/
-    /*@Column(name = "employment_date")
-    private String employmentDate;*/
+
     public void addImageToEmployee(Image image){
         image.setEmployee(this);
         images.add(image);

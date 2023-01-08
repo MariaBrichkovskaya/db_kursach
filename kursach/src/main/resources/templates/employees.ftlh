@@ -22,5 +22,17 @@
     <h3>Таких сотрудников тут отродясь не наблюдалось</h3>
 </#list>
 <hr>
+<h3>Добавление нового сотрудника</h3>
+<form action="/employee/create" method="post" enctype="multipart/form-data">
+    Фио <input type="text" name="fullName"/><br><br>
+    Должность <p><select name="position_id">
+            <option value="2">Менеджер</option>
+            <option value="3">Бариста</option></select></p><br>
+    Опыт работы <input type="number" min="0" name="experience"/><br><br>
+    Заработная плата <input type="number" min="0" name="salary"/><br><br>
+    Номер телефона <input type="text" name="phone"/><br><br>
+    Дата приема на работу <input type="date" name="date"/><br><br>
+    <input type="submit" value="Добавить сотрудника"/>
+</form>
 </body>
 </html>
