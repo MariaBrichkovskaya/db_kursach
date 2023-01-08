@@ -26,13 +26,14 @@ public class Employee {
     private int experience;
     @Column(name = "employee_phone_number")
     private String phone;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "employee")
+    /*@Column(name = "preview_image_id")
+    private Long previewImageId;*/
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "employee")
     private List<Image> images=new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "waiter")
     private List<Order> orders;
 
-    private Long previewImageId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")

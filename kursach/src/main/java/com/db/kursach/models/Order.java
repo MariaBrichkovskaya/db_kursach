@@ -25,7 +25,7 @@ public class Order {
     @Column(name = "other_info", columnDefinition = "text")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     private Employee waiter;
 

@@ -9,10 +9,7 @@
 
 <#list orders as order>
     <div>
-        <p><b>${order.id}</b> ${order.waiter.fullName} | <a href="/order/${order.id}">Подробнее</a></p>
-        <#list order.orderComposition as orderPosition>
-            <p>${orderPosition.product.name} <b>${orderPosition.amount}</b></p>
-        </#list>
+        <p> ${order.waiter.fullName} ${order.time} | <a href="/order/${order.id}">Подробнее</a></p>
     </div>
 <#else>
     <h3>Что-то у нас ничего не заказывают</h3>

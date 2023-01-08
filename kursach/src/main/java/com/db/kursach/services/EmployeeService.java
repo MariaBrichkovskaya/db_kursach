@@ -32,8 +32,8 @@ public class EmployeeService {
             employee.addImageToEmployee(image);
         }
         log.info("Saving new Employee.{}",employee);
-        Employee employeeFromDB=employeeRepository.save(employee);
-        employeeFromDB.setPreviewImageId(employeeFromDB.getImages().get(0).getId());
+        //Employee employeeFromDB=employeeRepository.save(employee);
+        //employeeFromDB.setPreviewImageId(employeeFromDB.getImages().get(0).getId());
         employeeRepository.save(employee);
     }
     public void saveImage( MultipartFile file,Long id) throws IOException {
@@ -43,7 +43,7 @@ public class EmployeeService {
         images.add(image);
         Employee employee=employeeRepository.findById(id).orElseThrow();
         employee.setImages(images);
-        employee.setPreviewImageId(image.getId());
+        //employee.setPreviewImageId(image.getId()); // что за ебанина
         employee.addImageToEmployee(image);
         employeeRepository.save(employee);
 
