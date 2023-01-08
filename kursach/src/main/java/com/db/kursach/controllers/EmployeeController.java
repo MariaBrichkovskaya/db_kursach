@@ -18,7 +18,7 @@ import java.io.IOException;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    @GetMapping("/")
+    @GetMapping("/employees")
     public String employees(@RequestParam(name = "fullName",required = false) String fullName, Model model){
         model.addAttribute("employees",employeeService.listEmployees(fullName));
         String searchString = "";
@@ -29,17 +29,17 @@ public class EmployeeController {
     @PostMapping("/employee/create")
     public String createEmployee(Employee employee){
         employeeService.saveEmployee(employee);
-        return "redirect:/";
+        return "redirect:/employees";
     }
     @PostMapping("/employee/{id}/trash")
     public String createImage(@RequestParam("file") MultipartFile file,@PathVariable Long id)throws IOException{
         employeeService.saveImage(file,id);
-        return "redirect:/";
+        return "redirect:/employees";
     }
     @PostMapping("/employee/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         employeeService.deleteEmployee(id);
-        return "redirect:/";
+        return "redirect:/employees";
     }
     @GetMapping("/employee/{id}")
     public String employeeInfo(@PathVariable Long id,Model model){

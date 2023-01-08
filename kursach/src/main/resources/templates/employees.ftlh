@@ -6,7 +6,7 @@
 <body>
 <h1>CAFE</h1><hr>
 <h4>Работники нашего прекрасного заведения</h4>
-<form action="/" method="get">
+<form action="/employees" method="get">
     Поиск по ФИО <input type="search" id="fio" name="fullName" oninput="form.submit()" value="${searchString}" autofocus onfocus="fio.setSelectionRange(fio.value.length, fio.value.length)"/>
 </form>
 
@@ -24,7 +24,7 @@
 <hr>
 <h3>Добавление нового сотрудника</h3>
 <form action="/employee/create" method="post" enctype="multipart/form-data">
-    Фио <input type="text" name="fullName"/><br><br>
+    ФИО <input type="text" name="fullName"/><br><br>
     Должность <p><select name="position1.id">
             <option value="">Выберите должность</option>
             <option value="2">Менеджер</option>
