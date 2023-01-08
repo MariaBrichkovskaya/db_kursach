@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "suppliers")
 @Data
@@ -25,5 +27,8 @@ public class Supplier {
     private String address;
     @Column(name = "supplier_phone_number")
     private String phone;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier")
+    private List<Delivery> deliveries;
 
 }

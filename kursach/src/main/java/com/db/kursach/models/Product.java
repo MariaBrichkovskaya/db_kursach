@@ -28,7 +28,7 @@ public class Product {
     @Column(name = "product_description")
     private String description;
     @Column(name = "product_price")
-    private Double price;
+    private Float price;
     //private String priceStr=String.format("%.2f", price);;
     /*@Column(name = "order_price")
     private Double price;
@@ -36,4 +36,7 @@ public class Product {
     private String description;*/
     @OneToMany(mappedBy = "product")
     private List<OrderComposition> orderComposition;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private List<Delivery> deliveries;
 }

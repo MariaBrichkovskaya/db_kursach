@@ -34,6 +34,8 @@ public class Employee {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "waiter")
     private List<Order> orders;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
+    private List<Delivery> deliveries;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
