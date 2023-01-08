@@ -30,7 +30,7 @@ public class Employee {
     @Column(name = "employee_phone_number")
     private String phone;
     @Column(name = "salary")
-    private String salary;
+    private int salary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "employment_date")
     private Date date;

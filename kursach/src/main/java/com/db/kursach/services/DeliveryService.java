@@ -21,4 +21,8 @@ public class DeliveryService {
     public Delivery getDeliveryById(Long id) {
         return deliveryRepository.findById(id).orElse(null);
     }
+    public void saveDelivery(Delivery delivery) {
+
+        deliveryRepository.save(delivery);
+    }
 }
