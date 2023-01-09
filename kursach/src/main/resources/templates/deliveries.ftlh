@@ -17,7 +17,7 @@
 <h3>Добавление нового сотрудника</h3>
 <form action="/delivery/create" method="post" enctype="multipart/form-data">
     Дата поставки <input type="date" pattern="yyyy-MM-dd" name="date"/><br><br>
-    Должность <p><select name="supplier.id">
+    Поставщик <p><select name="supplier.id">
             <option value="">Выберите поставщика</option>
             <#list suppliers as supplier>
                 <option value="${supplier.id}">${supplier.name}</option>

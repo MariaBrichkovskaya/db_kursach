@@ -17,7 +17,7 @@
 <hr>
 <h3>Добавление нового заказа</h3>
 <form action="/order/create" method="post" enctype="multipart/form-data">
-    <input type="submit" value="Добавить сотрудника"/>
+    <input type="submit" value="Добавить заказ"/>
 </form>
 </body>
 </html>
