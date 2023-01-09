@@ -1,5 +1,4 @@
 package com.db.kursach.services;
-import com.db.kursach.models.Employee;
 import com.db.kursach.models.Supplier;
 import com.db.kursach.repositories.SupplierRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +18,9 @@ public class SupplierService {
     }
     public Supplier getSupplierById(Long id) {
         return supplierRepository.findById(id).orElse(null);
+    }
+    public void saveSupplier(Supplier supplier) {
+
+        supplierRepository.save(supplier);
     }
 }

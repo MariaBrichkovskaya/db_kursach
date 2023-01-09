@@ -39,7 +39,7 @@ public class EmployeeController {
     @PostMapping("/employee/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         employeeService.deleteEmployee(id);
-        return "redirect:/";
+        return "redirect:/"; //тут надо employee после merge
     }
     @GetMapping("/employee/{id}")
     public String employeeInfo(@PathVariable Long id,Model model){

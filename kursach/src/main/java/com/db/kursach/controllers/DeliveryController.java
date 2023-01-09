@@ -36,6 +36,6 @@ public class DeliveryController {
     @PostMapping("/delivery/create")
     public String createDelivery(Delivery delivery){
         deliveryService.saveDelivery(delivery);
-        return "redirect:/";
+        return "redirect:/deliveries";
     }
 }
