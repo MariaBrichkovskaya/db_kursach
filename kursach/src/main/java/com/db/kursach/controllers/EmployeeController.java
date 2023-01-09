@@ -30,15 +30,14 @@ public class EmployeeController {
         return "employees";
     }
     @PostMapping("/employee/create")
-    public String createEmployee(Employee employee){
+    public String createEmployee(Employee employee) throws IOException{
         employeeService.saveEmployee(employee);
         return "redirect:/employees";
     }
     @PostMapping("/employee/{id}/trash")
     public String createImage(@RequestParam("file") MultipartFile file,@PathVariable Long id)throws IOException{
         employeeService.saveImage(file,id);
-        //return "redirect:/employees";
-        return "redirect:/employees";
+        return "redirect:/employee/{id}";
     }
     @PostMapping("/employee/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
@@ -57,8 +56,6 @@ public class EmployeeController {
         Employee employee=employeeService.getEmployeeById(id);
         return ResponseEntity.ok()
                 .header("title",employee.getFullName())
-                //.contentType(MediaType.valueOf(file.getContentType()))
-                //.contentLength((file.getSize()))
                 .body(new InputStreamResource(new ByteArrayInputStream(employee.getImage_bytes())));
     }
 

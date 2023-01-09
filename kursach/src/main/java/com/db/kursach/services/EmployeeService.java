@@ -20,14 +20,16 @@ public class EmployeeService {
         if(fullName!=null) return employeeRepository.findByFullNameContaining(fullName);
         return employeeRepository.findAll();
     }
-    public void saveEmployee(Employee employee) {
+    public void saveEmployee(Employee employee) throws IOException {
         log.info("Saving new Employee.{}",employee);
         employeeRepository.save(employee);
     }
     public void saveImage(MultipartFile file,Long id) throws IOException {
         Employee employee=employeeRepository.findById(id).orElseThrow();
-        employee.setImage_bytes(file.getBytes());
-        employeeRepository.save(employee);
+        if(!file.isEmpty()) {
+            employee.setImage_bytes(file.getBytes());
+            employeeRepository.save(employee);
+        }
     }
 
     public void deleteEmployee(Long id){

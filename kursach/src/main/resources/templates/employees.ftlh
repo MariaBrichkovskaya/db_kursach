@@ -13,10 +13,6 @@
 <#list employees as employee>
     <div>
         <p><b>${employee.fullName}</b> ${employee.position1.name} | <a href="/employee/${employee.id}">Подробнее</a></p>
-        <form action="/employee/${employee.id}/trash" method="post" enctype="multipart/form-data">
-            <input type="file" name="file"/><br><br>
-            <input type="submit" value="Добавить фото"/>
-        </form>
     </div>
     <#else>
     <h3>Таких сотрудников тут отродясь не наблюдалось</h3>
