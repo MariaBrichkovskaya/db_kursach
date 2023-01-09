@@ -1,8 +1,8 @@
 package com.db.kursach.services;
 
 
+
 import com.db.kursach.models.Order;
-import com.db.kursach.models.Product;
 import com.db.kursach.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,5 +21,9 @@ public class OrderService {
     }
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).orElse(null);
+    }
+    public void saveOrder(Order order) {
+
+        orderRepository.save(order);
     }
 }

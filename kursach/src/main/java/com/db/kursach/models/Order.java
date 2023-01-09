@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,7 +21,8 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
     @Column(name = "order_time")
-    private Time time;
+    @DateTimeFormat
+    private Date time;
     @Column(name = "order_price")
     private Double price;
     @Column(name = "other_info", columnDefinition = "text")
