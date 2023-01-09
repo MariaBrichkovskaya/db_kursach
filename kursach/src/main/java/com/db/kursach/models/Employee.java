@@ -7,9 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +31,8 @@ public class Employee {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "employment_date")
     private Date date;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "employee")
-    private List<Image> images=new ArrayList<>();
+    @Lob
+    private byte[] image_bytes;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "waiter")
     private List<Order> orders;
@@ -47,9 +44,9 @@ public class Employee {
     @JoinColumn(name = "position_id")
     private Position position1;
 
-    public void addImageToEmployee(Image image){
+    /*public void addImageToEmployee(Image image){
         image.setEmployee(this);
         images.add(image);
-    }
+    }*/
 
 }

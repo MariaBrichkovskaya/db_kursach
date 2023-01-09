@@ -3,6 +3,8 @@ package com.db.kursach.controllers;
 import com.db.kursach.models.Employee;
 import com.db.kursach.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Controller
@@ -34,6 +37,7 @@ public class EmployeeController {
     @PostMapping("/employee/{id}/trash")
     public String createImage(@RequestParam("file") MultipartFile file,@PathVariable Long id)throws IOException{
         employeeService.saveImage(file,id);
+        //return "redirect:/employees";
         return "redirect:/employees";
     }
     @PostMapping("/employee/delete/{id}")
@@ -45,7 +49,17 @@ public class EmployeeController {
     public String employeeInfo(@PathVariable Long id,Model model){
         Employee employee=employeeService.getEmployeeById(id);
         model.addAttribute("employee",employee);
-        model.addAttribute("images",employee.getImages());
         return "employee-info";
     }
+
+    @GetMapping("/employee/{id}/image")
+    private ResponseEntity<?> getEmployeeImage(@PathVariable Long id){
+        Employee employee=employeeService.getEmployeeById(id);
+        return ResponseEntity.ok()
+                .header("title",employee.getFullName())
+                //.contentType(MediaType.valueOf(file.getContentType()))
+                //.contentLength((file.getSize()))
+                .body(new InputStreamResource(new ByteArrayInputStream(employee.getImage_bytes())));
+    }
+
 }
