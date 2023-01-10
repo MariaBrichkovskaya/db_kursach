@@ -14,7 +14,7 @@
     <h3>Поставок не наблюдается</h3>
 </#list>
 <hr>
-<h3>Добавление нового сотрудника</h3>
+<h3>Добавление новой поставки</h3>
 <form action="/delivery/create" method="post" enctype="multipart/form-data">
     Дата поставки <input type="date" pattern="yyyy-MM-dd" name="date"/><br><br>
     Поставщик <p><select name="supplier.id">

@@ -40,13 +40,8 @@ public class Employee {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
     private List<Delivery> deliveries;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_id")
     private Position position1;
-
-    /*public void addImageToEmployee(Image image){
-        image.setEmployee(this);
-        images.add(image);
-    }*/
 
 }

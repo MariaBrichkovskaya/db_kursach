@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -29,12 +30,9 @@ public class Product {
     private String description;
     @Column(name = "product_price")
     private Float price;
-    //private String priceStr=String.format("%.2f", price);;
-    /*@Column(name = "order_price")
-    private Double price;
-    @Column(name = "other_info", columnDefinition = "text")
-    private String description;*/
-    @OneToMany(mappedBy = "product")
+
+    @OneToMany(mappedBy = "id.product",
+            cascade = CascadeType.ALL)
     private List<OrderComposition> orderComposition;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
