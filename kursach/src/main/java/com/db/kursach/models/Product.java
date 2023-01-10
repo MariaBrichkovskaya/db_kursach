@@ -20,7 +20,7 @@ public class Product {
     @Column(name = "product_name")
     private String name;
     @Column(name = "amount_in_stock")
-    private Long amount;
+    private Long amount= Long.valueOf(0);
     @Column(name = "calories")
     private Long calories;
     @Column(name = "unit_weight")

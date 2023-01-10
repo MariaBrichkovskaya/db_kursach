@@ -36,7 +36,7 @@
                 <option value="${employee.id}">${employee.fullName}</option>
             </#list>
         </select></p><br>
-    <input type="submit" value="Добавить сотрудника"/>
+    <input type="submit" value="Добавить поставку"/>
 </form>
 </body>
 </html>
