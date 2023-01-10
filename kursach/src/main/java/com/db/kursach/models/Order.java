@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -32,6 +33,13 @@ public class Order {
     @JoinColumn(name = "employee_id")
     private Employee waiter;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "id.order",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderComposition> orderComposition;
+    /*@ManyToMany
+    @JoinTable(
+            name = "order_composition",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    Set<Product> products;*/
 }

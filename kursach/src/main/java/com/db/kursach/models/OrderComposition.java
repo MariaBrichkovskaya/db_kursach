@@ -7,35 +7,54 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Embeddable
-class OrderCompositionKey implements Serializable {
-
-    @Column(name = "order_id")
-    Long order_id;
-
-    @Column(name = "product_id")
-    Long product_id;
-
-}
 @Entity
 @Table(name = "order_composition")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@AssociationOverrides({
+        @AssociationOverride(name = "id.order",
+                joinColumns = @JoinColumn(name = "order_id")),
+        @AssociationOverride(name = "id.product",
+                joinColumns = @JoinColumn(name = "product_id")) })
 public class OrderComposition {
-    @EmbeddedId
-    OrderCompositionKey id;
-
-    @Column(name = "product_amount")
+    OrderCompositionKey id = new OrderCompositionKey();
     private int amount;
-
-    @ManyToOne
-    @MapsId("product_id")
-    @JoinColumn(name = "product_id")
+    @Column(name="product_id")
     private Product product;
-
-    @ManyToOne
-    @MapsId("order_id")
-    @JoinColumn(name = "order_id")
+    @Column(name="order_id")
     private Order order;
+    @EmbeddedId
+    public OrderCompositionKey getId() {
+        return id;
+    }
+    public void setId(OrderCompositionKey id) {
+        this.id = id;
+    }
+    @Column(name="product_amount")
+    public int getAmount() {
+        return amount;
+    }
+    @Column(name="product_amount")
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    @Transient
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    @Transient
+    public Order getOrder() {
+        return order;
+    }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+
 }
