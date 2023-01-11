@@ -8,7 +8,7 @@
 <h1>CAFE</h1><hr>
 <h4>Подробная информация о работнике</h4>
 <#if employee.image_bytes??>
-    <br> <img src="/employee/${employee.id}/image" height="80px"/><br><br>
+    <br> <img src="/employee/${employee.id}/image" height="100px"/><br><br>
     <#else>
         <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5c2QCGWIDwM5VfLmcIWkU3aMzzQ18uf2ISQ&usqp=CAU" height="80px"/><br><br>
 </#if>

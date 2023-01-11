@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class DeliveryController {
@@ -20,7 +23,9 @@ public class DeliveryController {
     private final EmployeeService employeeService;
     @GetMapping("/deliveries")
     public String deliveries(Model model){
-        model.addAttribute("deliveries",deliveryService.listDeliveries());
+        List<Delivery> listDeliveries = deliveryService.listDeliveries();
+        listDeliveries.sort(Comparator.comparing(Delivery::getDate).reversed());
+        model.addAttribute("deliveries",listDeliveries);
         model.addAttribute("suppliers",supplierService.listSuppliers());
         model.addAttribute("products",productService.listProducts());
         model.addAttribute("employees",employeeService.listEmployees(null));

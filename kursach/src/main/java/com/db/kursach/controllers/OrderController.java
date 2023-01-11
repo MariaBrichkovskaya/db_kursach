@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +26,9 @@ public class OrderController {
     Order order;
     @GetMapping("/orders")
     public String orders(Model model){
-        model.addAttribute("orders",orderService.listOrders());
+        List<Order> listOrders = orderService.listOrders();
+        listOrders.sort(Comparator.comparing(Order::getTime).reversed());
+        model.addAttribute("orders",listOrders);
         return "orders";
     }
     @GetMapping("/order/{id}")

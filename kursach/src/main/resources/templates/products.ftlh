@@ -6,15 +6,27 @@
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>Продукты</h1><hr>
-<#list products as product>
-    <div>
-        <p> ${product.name} | <a href="/product/${product.id}">Подробнее</a></p>
-    </div>
+<#if products?has_content>
+<table border="1">
+    <tr>
+        <th>Название продукта</th>
+        <th>Количество на<br>складе, шт.</th>
+        <th>Цена за<br>единицу, руб.</th>
+    </tr>
+    <#list products as product>
+        <tr>
+            <td><a href="/product/${product.id}">${product.name}</a></td>
+            <td align="center">${product.amount}</td>
+            <td align="center">${product.price}</td>
+        </tr>
+
+    </#list>
+</table>
 <#else>
-    <h3>Продукты на складе отсутствуют</h3>
-</#list>
+    <h3>Заказов нет</h3>
+</#if>
 <hr>
-<h3>Добавление нового сотрудника</h3>
+<h3>Добавление нового продукта</h3>
 <form action="/product/create" method="post" enctype="multipart/form-data">
     Наименование <input type="text"  name="name"/><br><br>
     Калорийность <input type="number"  name="calories" Ккал/><br><br>

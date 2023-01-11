@@ -16,7 +16,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Order implements Comparable<Order>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
@@ -36,10 +36,9 @@ public class Order {
     @OneToMany(mappedBy = "id.order",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderComposition> orderComposition;
-    /*@ManyToMany
-    @JoinTable(
-            name = "order_composition",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    Set<Product> products;*/
+
+    @Override
+    public int compareTo(Order order) {
+        return order.time.compareTo(time);
+    }
 }

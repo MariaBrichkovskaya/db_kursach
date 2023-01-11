@@ -9,14 +9,25 @@
 <h4>Работники нашего прекрасного заведения</h4>
 <form action="/employees" method="get">
     Поиск по ФИО <input type="search" id="fio" name="fullName" oninput="form.submit()" value="${searchString}" autofocus onfocus="fio.setSelectionRange(fio.value.length, fio.value.length)"/>
-</form>
-<#list employees as employee>
-    <div>
-        <p><b>${employee.fullName}</b> ${employee.position1.name} | <a href="/employee/${employee.id}">Подробнее</a></p>
-    </div>
-    <#else>
+</form><br>
+<#if employees?has_content>
+<table border="1">
+    <tr>
+        <th>ФИО</th>
+        <th>Должность</th>
+        <th>Опыт работы</th>
+    </tr>
+    <#list employees as employee>
+        <tr>
+            <td><a href="/employee/${employee.id}">${employee.fullName}</a></td>
+            <td align="center">${employee.position1.name}</td>
+            <td align="center">${employee.experience}</td>
+        </tr>
+    </#list>
+</table>
+<#else>
     <h3>Таких сотрудников тут отродясь не наблюдалось</h3>
-</#list>
+</#if>
 <hr>
 <h3>Добавление нового сотрудника</h3>
 <form action="/employee/create" method="post" enctype="multipart/form-data">

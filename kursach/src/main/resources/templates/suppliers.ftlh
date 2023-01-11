@@ -6,14 +6,25 @@
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>Наши поставщики</h1><hr>
-
-<#list suppliers as supplier>
-    <div>
-        <p> ${supplier.name} | <a href="/supplier/${supplier.id}">Подробнее</a></p>
-    </div>
+<#if suppliers?has_content>
+<table border="1">
+    <tr>
+        <th>Название компании</th>
+        <th>Страна</th>
+        <th>Город</th>
+    </tr>
+    <#list suppliers as supplier>
+        <tr>
+            <td><a href="/supplier/${supplier.id}">${supplier.name}</a></td>
+            <td align="center">${supplier.country}</td>
+            <td align="center">${supplier.city}</td>
+        </tr>
+    </#list>
+</table>
 <#else>
     <h3>Поставщики отсутствуют, начните же уже работать с кем-то</h3>
-</#list>
+</#if>
+
 <hr>
 <h3>Добавление нового поставщика</h3>
 <form action="/supplier/create" method="post" enctype="multipart/form-data">
