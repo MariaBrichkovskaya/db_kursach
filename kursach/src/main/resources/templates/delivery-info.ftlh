@@ -4,6 +4,7 @@
     <title>CAFE</title>
 </head>
 <body>
+<a href="/">Вернуться на главную</a>
 <h1>CAFE</h1><hr>
 <h4>Подробная информация о поставке</h4>
 <b>Название продукта </b><a href="/product/${delivery.product.id}">${delivery.product.name}</a><br>

@@ -4,6 +4,7 @@
     <title>CAFE</title>
 </head>
 <body>
+<a href="/">Вернуться на главную</a>
 <h1>Дабавление заказа</h1><hr>
 <#if order.orderComposition??>
 <#list order.orderComposition as orderPosition>

@@ -4,9 +4,8 @@
     <title>CAFE</title>
 </head>
 <body>
+<a href="/">Вернуться на главную</a>
 <h1>Продукты</h1><hr>
-<h4>Продукты на складе</h4>
-
 <#list products as product>
     <div>
         <p> ${product.name} | <a href="/product/${product.id}">Подробнее</a></p>

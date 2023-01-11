@@ -4,6 +4,7 @@
     <title>CAFE</title>
 </head>
 <body>
+<a href="/">Вернуться на главную</a>
 <h1>Наши поставщики</h1><hr>
 
 <#list suppliers as supplier>
