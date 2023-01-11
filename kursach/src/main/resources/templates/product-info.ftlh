@@ -14,5 +14,9 @@
 <b>Вес </b>${product.unitWeight} г<br>
 <b>Описание </b>${product.description}<br>
 <hr>
+<h3>Удаление продукта</h3>
+<form action="/product/delete/${product.id}" method="post" enctype="multipart/form-data">
+    <input type="submit" value="Удалить продукт"/>
+</form>
 </body>
 </html>

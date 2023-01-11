@@ -39,4 +39,7 @@ public class OrderService {
         orderRepository.save(order);
         orderCompRepository.saveAll(order.getOrderComposition());
     }
+    public void deleteOrder(Long id){
+        orderRepository.deleteById(id);
+    }
 }

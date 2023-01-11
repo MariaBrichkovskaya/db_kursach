@@ -25,5 +25,9 @@
 <form action="/order/employee${employee.id}/create" method="post" enctype="multipart/form-data">
     <input type="submit" value="Добавить заказ"/>
 </form>
+<h3>Удаление работника</h3>
+<form action="/employee/delete/${employee.id}" method="post" enctype="multipart/form-data">
+    <input type="submit" value="Удалить работника"/>
+</form>
 </body>
 </html>

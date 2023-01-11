@@ -9,7 +9,7 @@
 <h4>Поставки</h4>
 <#list deliveries as delivery>
     <div>
-        <p><b>${delivery.product.name}</b> ${delivery.date} | <a href="/delivery/${delivery.id}">Подробнее</a></p>
+        <p><#if delivery.product?has_content><b>${delivery.product.name}</b></#if> ${delivery.date} | <a href="/delivery/${delivery.id}">Подробнее</a></p>
     </div>
 <#else>
     <h3>Поставок не наблюдается</h3>

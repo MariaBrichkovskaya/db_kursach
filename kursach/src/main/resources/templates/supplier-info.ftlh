@@ -13,6 +13,9 @@
 <b>Адрес </b>${supplier.address}<br>
 <b>Номер телефона </b>${supplier.phone}<br>
 <hr>
-
+<h3>Удаление поставщика</h3>
+<form action="/supplier/delete/${supplier.id}" method="post" enctype="multipart/form-data">
+    <input type="submit" value="Удалить поставщика"/>
+</form>
 </body>
 </html>

@@ -35,6 +35,6 @@ public class Product {
             cascade = CascadeType.ALL)
     private List<OrderComposition> orderComposition;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<Delivery> deliveries;
 }

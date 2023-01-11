@@ -1,9 +1,11 @@
 package com.db.kursach.services;
 
 import com.db.kursach.models.Product;
+import com.db.kursach.repositories.EmployeeRepository;
 import com.db.kursach.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +24,8 @@ public class ProductService {
     }
     public void saveProduct(Product product) {
         productRepository.save(product);
+    }
+    public void deleteProduct(Long id){
+        productRepository.deleteById(id);
     }
 }

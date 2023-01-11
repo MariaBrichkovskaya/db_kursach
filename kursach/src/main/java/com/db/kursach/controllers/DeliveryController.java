@@ -38,4 +38,10 @@ public class DeliveryController {
         deliveryService.saveDelivery(delivery);
         return "redirect:/deliveries";
     }
+    @PostMapping("/delivery/delete/{id}")
+    public String deleteDelivery(@PathVariable Long id){
+        deliveryService.deleteDelivery(id);
+        return "redirect:/deliveries";
+    }
+
 }
