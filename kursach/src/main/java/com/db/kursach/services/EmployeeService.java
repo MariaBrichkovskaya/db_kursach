@@ -39,5 +39,16 @@ public class EmployeeService {
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id).orElse(null);
     }
+    public void editEmployee(Long id, Employee employee){
+        Employee employee1=employeeRepository.findById(id).orElseThrow();
+        employee1.setDate(employee1.getDate());
+        employee1.setImage_bytes(employee1.getImage_bytes());
+        employee1.setExperience(employee.getExperience());
+        employee1.setFullName(employee.getFullName());
+        employee1.setPhone(employee.getPhone());
+        employee1.setPosition1(employee.getPosition1());
+        employee1.setSalary(employee.getSalary());
+        employeeRepository.save(employeeRepository.findById(id).orElse(null));
+    }
 
 }

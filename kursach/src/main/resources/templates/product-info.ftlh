@@ -17,6 +17,7 @@
 <h3>Удаление продукта</h3>
 <form action="/product/delete/${product.id}" method="post" enctype="multipart/form-data">
     <input type="submit" value="Удалить продукт"/>
-</form>
+</form><br>
+<a href="/product/edit/${product.id}">Редактирование информации</a>
 </body>
 </html>

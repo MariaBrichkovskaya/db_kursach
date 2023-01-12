@@ -58,5 +58,18 @@ public class EmployeeController {
                 .header("title",employee.getFullName())
                 .body(new InputStreamResource(new ByteArrayInputStream(employee.getImage_bytes())));
     }
+    @GetMapping("/employee/edit/{id}")
+    public String editEmployee(@PathVariable Long id,Model model)
+    {
+        Employee employee=employeeService.getEmployeeById(id);
+        model.addAttribute("employee",employee);
+        return "employee-edit";
+    }
+    @PostMapping("/employee/editing/{id}")
+    public String editingEmployee(@PathVariable Long id,Employee employee)
+    {
+        employeeService.editEmployee(id,employee);
+        return "redirect:/employee/{id}";
+    }
 
 }

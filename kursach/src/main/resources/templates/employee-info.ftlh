@@ -16,10 +16,6 @@
 <b>Должность </b>${employee.position1.name}<br>
 <b>Опыт работы </b>${employee.experience}<br>
 <b>Номер телефона </b>${employee.phone}<br><br>
-<form action="/employee/${employee.id}/trash" method="post" enctype="multipart/form-data">
-    <input type="file" name="file"/><br><br>
-    <input type="submit" value="Добавить фото"/>
-</form>
 <hr>
 <h3>Добавление нового заказа</h3>
 <form action="/order/employee${employee.id}/create" method="post" enctype="multipart/form-data">
@@ -28,6 +24,7 @@
 <h3>Удаление работника</h3>
 <form action="/employee/delete/${employee.id}" method="post" enctype="multipart/form-data">
     <input type="submit" value="Удалить работника"/>
-</form>
+</form><br>
+<a href="/employee/edit/${employee.id}">Редактирование информации</a>
 </body>
 </html>

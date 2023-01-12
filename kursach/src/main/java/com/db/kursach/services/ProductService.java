@@ -1,5 +1,6 @@
 package com.db.kursach.services;
 
+import com.db.kursach.models.Employee;
 import com.db.kursach.models.Product;
 import com.db.kursach.repositories.EmployeeRepository;
 import com.db.kursach.repositories.ProductRepository;
@@ -27,5 +28,15 @@ public class ProductService {
     }
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
+    }
+    public void editProduct(Long id,Product product){
+        Product product1=productRepository.findById(id).orElseThrow();
+        product1.setAmount(product.getAmount());
+        product1.setPrice(product.getPrice());
+        product1.setDescription(product.getDescription());
+        product1.setName(product.getName());
+        product1.setCalories(product.getCalories());
+        product1.setUnitWeight(product.getUnitWeight());
+        productRepository.save(productRepository.findById(id).orElse(null));
     }
 }
