@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Employee {
     private int salary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "employment_date")
-    private Date date;
+    private LocalDate date;
     @Lob
     private byte[] image_bytes;
 
@@ -43,5 +44,6 @@ public class Employee {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_id")
     private Position position1;
+
 
 }

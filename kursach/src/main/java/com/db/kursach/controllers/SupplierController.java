@@ -34,4 +34,18 @@ public class SupplierController {
         supplierService.deleteSupplier(id);
         return "redirect:/suppliers";
     }
+    @GetMapping("/supplier/edit/{id}")
+    public String editSupplier(@PathVariable Long id,Model model)
+    {
+        Supplier supplier=supplierService.getSupplierById(id);
+        model.addAttribute("supplier",supplier);
+        return "supplier-edit";
+    }
+    @PostMapping("/supplier/editing/{id}")
+    public String editingSupplier(@PathVariable Long id,Supplier supplier)
+    {
+        supplierService.editSupplier(id,supplier);
+        return "redirect:/supplier/{id}";
+    }
+
 }

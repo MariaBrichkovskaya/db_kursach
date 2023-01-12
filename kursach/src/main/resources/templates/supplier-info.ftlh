@@ -16,6 +16,7 @@
 <h3>Удаление поставщика</h3>
 <form action="/supplier/delete/${supplier.id}" method="post" enctype="multipart/form-data">
     <input type="submit" value="Удалить поставщика"/>
-</form>
+</form><br>
+<a href="/supplier/edit/${supplier.id}">Редактирование информации</a>
 </body>
 </html>

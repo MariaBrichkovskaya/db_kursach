@@ -41,7 +41,7 @@ public class EmployeeService {
     }
     public void editEmployee(Long id, Employee employee){
         Employee employee1=employeeRepository.findById(id).orElseThrow();
-        employee1.setDate(employee1.getDate());
+        employee1.setDate(employee.getDate());
         employee1.setImage_bytes(employee1.getImage_bytes());
         employee1.setExperience(employee.getExperience());
         employee1.setFullName(employee.getFullName());
