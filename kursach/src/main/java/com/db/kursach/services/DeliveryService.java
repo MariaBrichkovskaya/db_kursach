@@ -2,10 +2,8 @@ package com.db.kursach.services;
 
 import com.db.kursach.models.Delivery;
 import com.db.kursach.repositories.DeliveryRepository;
-import com.db.kursach.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +29,14 @@ public class DeliveryService {
     }
     public void deleteDelivery(Long id){
         deliveryRepository.deleteById(id);
+    }
+    public void editDelivery(Long id, Delivery delivery){
+        Delivery delivery1=deliveryRepository.findById(id).orElseThrow();
+        delivery1.setDate(delivery.getDate());
+        delivery1.setEmployee(delivery.getEmployee());
+        delivery1.setAmount(delivery.getAmount());
+        delivery1.setProduct(delivery.getProduct());
+        delivery1.setSupplier(delivery.getSupplier());
+        deliveryRepository.save(deliveryRepository.findById(id).orElse(null));
     }
 }

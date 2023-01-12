@@ -48,5 +48,22 @@ public class DeliveryController {
         deliveryService.deleteDelivery(id);
         return "redirect:/deliveries";
     }
+    @GetMapping("/delivery/edit/{id}")
+    public String editDelivery(@PathVariable Long id,Model model)
+    {
+        Delivery delivery=deliveryService.getDeliveryById(id);
+        model.addAttribute("delivery",delivery);
+        model.addAttribute("suppliers",supplierService.listSuppliers());
+        model.addAttribute("products",productService.listProducts());
+        model.addAttribute("employees",employeeService.listEmployees(null));
+        return "delivery-edit";
+    }
+    @PostMapping("/delivery/editing/{id}")
+    public String editingDelivery(@PathVariable Long id,Delivery delivery)
+    {
+        deliveryService.editDelivery(id,delivery);
+        return "redirect:/delivery/{id}";
+    }
+
 
 }

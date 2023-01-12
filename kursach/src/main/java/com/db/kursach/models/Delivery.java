@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "deliveries")
@@ -19,7 +20,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
     @Column(name = "delivery_date")
-    private Date date;
+    private LocalDate date;
     @Column(name = "product_amount")
     private int amount;
 
