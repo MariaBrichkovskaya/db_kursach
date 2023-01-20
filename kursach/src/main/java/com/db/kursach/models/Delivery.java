@@ -22,7 +22,7 @@ public class Delivery {
     @Column(name = "delivery_date")
     private LocalDate date;
     @Column(name = "product_amount")
-    private int amount;
+    private Integer amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
@@ -35,4 +35,5 @@ public class Delivery {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
+    public String toStringAmount(){return amount.toString();}
 }

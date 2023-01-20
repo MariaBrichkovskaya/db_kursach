@@ -21,7 +21,7 @@
                 <option value="${product.id}">${product.name}</option>
             </#list>
         </select></p><br>
-    Количество <input type="number" min="1" value="${delivery.amount}" step="1" name="amount"/><br><br>
+    Количество <input type="number" min="1" value="${delivery.toStringAmount()}" step="1" name="amount"/><br><br>
     Принимающий поставку работник <p><select name="employee.id">
             <option value="${delivery.employee.id}">${delivery.employee.fullName}</option>
             <#list employees as employee>
