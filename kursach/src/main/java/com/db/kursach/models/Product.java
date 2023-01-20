@@ -42,4 +42,5 @@ public class Product {
     public String toStringWeight()
     {return unitWeight.toString();}
     public String toStringAmount(){return amount.toString(); }
+    public String toStringPrice(){return price.toString();}
 }
