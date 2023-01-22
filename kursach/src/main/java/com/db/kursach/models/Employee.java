@@ -28,7 +28,7 @@ public class Employee {
     @Column(name = "employee_phone_number")
     private String phone;
     @Column(name = "salary")
-    private int salary;
+    private Integer salary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "employment_date")
     private LocalDate date;
@@ -44,6 +44,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_id")
     private Position position1;
+    public String toStringSalary(){return salary.toString();}
 
 
 }

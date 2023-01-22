@@ -23,9 +23,9 @@ public class Product {
     @Column(name = "amount_in_stock")
     private Long amount= Long.valueOf(0);
     @Column(name = "calories")
-    private Long calories;
+    private Integer calories;
     @Column(name = "unit_weight")
-    private int unitWeight;
+    private Integer unitWeight;
     @Column(name = "product_description")
     private String description;
     @Column(name = "product_price")
@@ -37,4 +37,10 @@ public class Product {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<Delivery> deliveries;
+    public String toStringCalories()
+    {return calories.toString();}
+    public String toStringWeight()
+    {return unitWeight.toString();}
+    public String toStringAmount(){return amount.toString(); }
+    public String toStringPrice(){return price.toString();}
 }

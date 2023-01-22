@@ -22,7 +22,7 @@
             <option value="6">Управляющий</option>
             <option value="7">Кассир</option></select></p><br>
     Опыт работы <input type="number" value="${employee.experience}" min="0" name="experience"/><br><br>
-    Заработная плата <input type="number" value="${employee.salary}" min="0" name="salary"/><br><br>
+    Заработная плата <input type="number" value="${employee.toStringSalary()}" min="0" name="salary"/><br><br>
     Номер телефона <input type="text" value="${employee.phone}" maxlength="13" minlength="13" name="phone"/><br><br>
     Дата приема на работу <input type="date" value="${employee.date}" name="date"/><br><br>
     <input type="submit" value="Изменить информацию"/>

@@ -18,6 +18,7 @@
 <h3>Удаление поставки</h3>
 <form action="/delivery/delete/${delivery.id}" method="post" enctype="multipart/form-data">
     <input type="submit" value="Удалить поставку"/>
-</form>
+</form><br>
+<a href="/delivery/edit/${delivery.id}">Редактирование информации</a>
 </body>
 </html>
