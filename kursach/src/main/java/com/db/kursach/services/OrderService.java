@@ -47,7 +47,7 @@ public class OrderService {
     }
 
     public Order deleteOrderPosition(int positionIndex, Order order) {
-        order.getOrderComposition().remove(positionIndex+0);
+        order.getOrderComposition().remove(positionIndex);
         return order;
     }
 
