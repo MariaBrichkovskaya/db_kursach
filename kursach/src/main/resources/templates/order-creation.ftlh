@@ -8,13 +8,15 @@
 <h1>Дабавление заказа</h1><hr>
 <#if order.orderComposition??>
 <#list order.orderComposition as orderPosition>
-    <p><a href="/product/${orderPosition.product.id}">${orderPosition.product.name}</a> ${orderPosition.amount} шт.</p>
+    <p><a href="/product/${orderPosition.product.id}">${orderPosition.product.name}</a> ${orderPosition.amount} шт.
+        <a href="/order/deletePosition/${orderPosition_index}">Удалить</a>
+    </p>
 </#list>
     <#else>
     <h3>Добавьте продукты в заказ</h3>
 </#if>
     <form action="/order/addProduct" method="post" enctype="multipart/form-data">
-    Продукт <select name="id">
+    Продукт <select name="productId">
             <option value="">Выберите продукт</option>
             <#list products as product>
                 <option value="${product.id}">${product.name}</option>
@@ -24,6 +26,7 @@
         <input type="submit" value="Добавить в заказ"/><br><br>
     </form>
     <form action="/order/save" method="post" enctype="multipart/form-data">
+        Описание <input type="text"  name="description" value="${order.description}"/><br><br>
     <input type="submit" value="Заказ"/>
     </form>
 </body>

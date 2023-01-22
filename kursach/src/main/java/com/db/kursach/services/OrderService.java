@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -20,6 +22,7 @@ import java.util.List;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderCompRepository orderCompRepository;
+    private final EmployeeService employeeService;
     public List<Order> listOrders(){
         return orderRepository.findAll();
     }
@@ -42,4 +45,10 @@ public class OrderService {
     public void deleteOrder(Long id){
         orderRepository.deleteById(id);
     }
+
+    public Order deleteOrderPosition(int positionIndex, Order order) {
+        order.getOrderComposition().remove(positionIndex+0);
+        return order;
+    }
+
 }

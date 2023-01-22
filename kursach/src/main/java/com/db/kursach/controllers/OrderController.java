@@ -4,15 +4,18 @@ package com.db.kursach.controllers;
 
 import com.db.kursach.models.Order;
 import com.db.kursach.models.OrderComposition;
+import com.db.kursach.models.OrderCompositionKey;
 import com.db.kursach.services.EmployeeService;
 import com.db.kursach.services.OrderService;
 import com.db.kursach.services.ProductService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -57,12 +60,14 @@ public class OrderController {
         return "order-creation";
     }
     @PostMapping("/order/addProduct")
-    public String addProductInOrder(Long id, int productAmount){
-        order = orderService.addProductInOrder(order, productService.getProductById(id), productAmount);
+    public String addProductInOrder(Long productId, int productAmount){
+        order = orderService.addProductInOrder(order, productService.getProductById(productId), productAmount);
         return "redirect:/order/create";
     }
+
     @PostMapping("/order/save")
-    public String saveOrder(){
+    public String saveOrder(String description){
+        order.setDescription(description);
         orderService.saveOrder(order);
         return "redirect:/orders";
     }
@@ -71,5 +76,12 @@ public class OrderController {
         orderService.deleteOrder(id);
         return "redirect:/orders";
     }
+
+    @GetMapping("/order/deletePosition/{index}")
+    public String deleteProductFromOrder(@PathVariable Integer index) {
+        order = orderService.deleteOrderPosition(index, order);
+        return "redirect:/order/create";
+    }
+
 
 }
