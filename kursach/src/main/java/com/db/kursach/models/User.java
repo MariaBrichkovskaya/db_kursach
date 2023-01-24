@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Id
     @Column(name = "login")
     private String login;
-    @Column(name = "password",length = 30)
+    @Column(name = "password")
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
