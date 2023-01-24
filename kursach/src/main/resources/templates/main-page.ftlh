@@ -9,7 +9,7 @@
 <body>
 <h1>CAFE | <a href="/login">Войти</a></h1>
 <form action="/logout" method="post">
-    <input type=="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Выйти">
 </form>
 <hr>
