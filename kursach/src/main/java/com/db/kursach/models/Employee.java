@@ -40,11 +40,13 @@ public class Employee {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
     private List<Delivery> deliveries;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_id")
     private Position position1;
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    private User user;
     public String toStringSalary(){return salary.toString();}
+
 
 
 }
