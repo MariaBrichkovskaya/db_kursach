@@ -21,6 +21,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.ROLE_DIRECTOR);
         log.info("Saving new user with login {}",user.getLogin());
+        userRepository.save(user);
         return true;
     }
 }

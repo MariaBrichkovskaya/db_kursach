@@ -15,17 +15,19 @@ import java.util.Collections;
 @Table(name = "users")
 @Data
 public class User implements UserDetails {
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long id;*/
+    @Id
     @Column(name = "login")
     private String login;
     @Column(name = "password",length = 30)
     private String password;
-    //@Id
-    @OneToOne(fetch = FetchType.LAZY)
-    private Employee employee;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "employee_id")
+    private Employee worker;
     @JoinColumn(name="position_id")
     private Role role;
 
@@ -41,7 +43,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

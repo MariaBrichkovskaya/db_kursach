@@ -50,7 +50,7 @@ public class SecurityConfig{
                 .passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }*/
-    @Bean
+
     public AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth ) throws Exception {
         return auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder()).and().build();
