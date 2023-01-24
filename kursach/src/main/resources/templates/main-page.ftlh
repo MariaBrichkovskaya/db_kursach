@@ -10,7 +10,7 @@
 <h1>CAFE</h1>
 <hr>
 <h4><p><a href="/orders">Заказы</a> <a href="/employees">Работники</a> <a href="/products">Продукты</a>
-        <a href="/deliveries">Поставки</a> <a href="/suppliers">Поставщики</a></p></h4>
+        <a href="/deliveries">Поставки</a> <a href="/suppliers">Поставщики</a> <a href="/views">Представления</a></p></h4>
 <hr>
 </body>
 </html>
