@@ -15,16 +15,20 @@
 <b>ФИО </b>${employee.fullName}<br>
 <b>Должность </b>${employee.position1.name}<br>
 <b>Опыт работы </b>${employee.experience}<br>
+<#if !user.isWaiter()>
+<b>Зарплата </b>${employee.salary}<br>
+</#if>
+<b>Электронная почта </b>${employee.email}<br>
 <b>Номер телефона </b>${employee.phone}<br><br>
 <hr>
-<h3>Добавление нового заказа</h3>
-<form action="/order/employee${employee.id}/create" method="post" enctype="multipart/form-data">
-    <input type="submit" value="Добавить заказ"/>
-</form>
+<#if user.isDirector() || user.isAdministrator()>
 <h3>Удаление работника</h3>
 <form action="/employee/delete/${employee.id}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Удалить работника"/>
-</form><br>
+</form><br></#if>
+<#if !(user.isWaiter() && (user.employee.id !=employee.id))>
 <a href="/employee/edit/${employee.id}">Редактирование информации</a>
+</#if>
 </body>
 </html>

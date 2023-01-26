@@ -29,6 +29,7 @@
     <h3>Таких сотрудников тут отродясь не наблюдалось</h3>
 </#if>
 <hr>
+<#if user.isDirector() || user.isAdministrator()>
 <h3>Добавление нового сотрудника</h3>
 <form action="/employee/create" method="post" enctype="multipart/form-data">
     ФИО <input type="text" size="40" name="fullName"/><br><br>
@@ -42,9 +43,12 @@
             <option value="7">Кассир</option></select></p><br>
     Опыт работы <input type="number" min="0" name="experience"/><br><br>
     Заработная плата <input type="number" min="0" name="salary"/><br><br>
+    Электронная почта <input type="text" name="email"/><br><br>
     Номер телефона <input type="text" maxlength="13" minlength="13" name="phone"/><br><br>
     Дата приема на работу <input type="date" name="date"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить сотрудника"/>
 </form>
+</#if>
 </body>
 </html>

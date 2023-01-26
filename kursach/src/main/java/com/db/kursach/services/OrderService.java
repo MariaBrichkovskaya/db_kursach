@@ -2,16 +2,15 @@ package com.db.kursach.services;
 
 
 
-import com.db.kursach.models.Order;
-import com.db.kursach.models.OrderComposition;
-import com.db.kursach.models.OrderCompositionKey;
-import com.db.kursach.models.Product;
+import com.db.kursach.models.*;
 import com.db.kursach.repositories.OrderCompRepository;
 import com.db.kursach.repositories.OrderRepository;
+import com.db.kursach.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,7 +21,7 @@ import java.util.Optional;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderCompRepository orderCompRepository;
-    private final EmployeeService employeeService;
+    private final UserRepository userRepository;
     public List<Order> listOrders(){
         return orderRepository.findAll();
     }
@@ -50,5 +49,6 @@ public class OrderService {
         order.getOrderComposition().remove(positionIndex);
         return order;
     }
+
 
 }

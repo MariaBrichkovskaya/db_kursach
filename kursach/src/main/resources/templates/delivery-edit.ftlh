@@ -28,6 +28,7 @@
                 <option value="${employee.id}">${employee.fullName}</option>
             </#list>
         </select></p><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Изменить информацию"/>
 </form>
 </body>

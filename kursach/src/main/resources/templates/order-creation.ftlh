@@ -23,10 +23,12 @@
             </#list>
         </select><br><br>
     Количество <input type="number" min="1" step="1" name="productAmount"/>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Добавить в заказ"/><br><br>
     </form>
     <form action="/order/save" method="post" enctype="multipart/form-data">
         Описание <input type="text"  name="description" value="${order.description}"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Заказ"/>
     </form>
 </body>

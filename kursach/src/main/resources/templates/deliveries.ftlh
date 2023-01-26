@@ -15,6 +15,7 @@
     <h3>Поставок не наблюдается</h3>
 </#list>
 <hr>
+<#if !user.isAccountant()>
 <h3>Добавление новой поставки</h3>
 <form action="/delivery/create" method="post" enctype="multipart/form-data">
     Дата поставки <input type="date" pattern="yyyy-MM-dd" name="date"/><br><br>
@@ -37,7 +38,9 @@
                 <option value="${employee.id}">${employee.fullName}</option>
             </#list>
         </select></p><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить поставку"/>
 </form>
+</#if>
 </body>
 </html>

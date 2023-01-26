@@ -27,6 +27,8 @@ public class Employee {
     private int experience;
     @Column(name = "employee_phone_number")
     private String phone;
+    @Column(name="email")
+    private String email;
     @Column(name = "salary")
     private Integer salary;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -40,12 +42,14 @@ public class Employee {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
     private List<Delivery> deliveries;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_id")
     private Position position1;
 
-    @OneToOne(mappedBy = "worker")
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private User user;
+
     public String toStringSalary(){return salary.toString();}
 
 

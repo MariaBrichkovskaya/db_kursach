@@ -48,6 +48,7 @@ public class EmployeeService {
         employee1.setPhone(employee.getPhone());
         employee1.setPosition1(employee.getPosition1());
         employee1.setSalary(employee.getSalary());
+        employee1.setEmail(employee.getEmail());
         employeeRepository.save(employeeRepository.findById(id).orElse(null));
     }
 

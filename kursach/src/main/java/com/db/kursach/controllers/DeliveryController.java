@@ -1,16 +1,16 @@
 package com.db.kursach.controllers;
 import com.db.kursach.models.Delivery;
-import com.db.kursach.services.DeliveryService;
-import com.db.kursach.services.EmployeeService;
-import com.db.kursach.services.ProductService;
-import com.db.kursach.services.SupplierService;
+import com.db.kursach.models.User;
+import com.db.kursach.services.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,10 +21,12 @@ public class DeliveryController {
     private final SupplierService supplierService;
     private final ProductService productService;
     private final EmployeeService employeeService;
+    private final UserService userService;
     @GetMapping("/deliveries")
-    public String deliveries(Model model){
+    public String deliveries(Principal principal, Model model){
         List<Delivery> listDeliveries = deliveryService.listDeliveries();
         listDeliveries.sort(Comparator.comparing(Delivery::getDate).reversed());
+        model.addAttribute("user",userService.getUserByPrincipal(principal));
         model.addAttribute("deliveries",listDeliveries);
         model.addAttribute("suppliers",supplierService.listSuppliers());
         model.addAttribute("products",productService.listProducts());
@@ -33,31 +35,37 @@ public class DeliveryController {
     }
 
     @GetMapping("/delivery/{id}")
-    public String productInfo(@PathVariable Long id, Model model){
+    public String deliveryInfo(@PathVariable Long id, Principal principal, Model model){
         Delivery delivery = deliveryService.getDeliveryById(id);
+        model.addAttribute("user",userService.getUserByPrincipal(principal));
         model.addAttribute("delivery", delivery);
         return "delivery-info";
     }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER')")
     @PostMapping("/delivery/create")
     public String createDelivery(Delivery delivery){
         deliveryService.saveDelivery(delivery);
         return "redirect:/deliveries";
     }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER')")
     @PostMapping("/delivery/delete/{id}")
     public String deleteDelivery(@PathVariable Long id){
         deliveryService.deleteDelivery(id);
         return "redirect:/deliveries";
     }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER')")
     @GetMapping("/delivery/edit/{id}")
-    public String editDelivery(@PathVariable Long id,Model model)
+    public String editDelivery(@PathVariable Long id,User user, Model model)
     {
         Delivery delivery=deliveryService.getDeliveryById(id);
+        model.addAttribute("user",user);
         model.addAttribute("delivery",delivery);
         model.addAttribute("suppliers",supplierService.listSuppliers());
         model.addAttribute("products",productService.listProducts());
         model.addAttribute("employees",employeeService.listEmployees(null));
         return "delivery-edit";
     }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER')")
     @PostMapping("/delivery/editing/{id}")
     public String editingDelivery(@PathVariable Long id,Delivery delivery)
     {

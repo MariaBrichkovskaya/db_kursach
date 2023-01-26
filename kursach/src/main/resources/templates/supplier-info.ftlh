@@ -13,10 +13,13 @@
 <b>Адрес </b>${supplier.address}<br>
 <b>Номер телефона </b>${supplier.phone}<br>
 <hr>
+<#if user.isAdministrator() || user.isDirector()>
 <h3>Удаление поставщика</h3>
 <form action="/supplier/delete/${supplier.id}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Удалить поставщика"/>
 </form><br>
 <a href="/supplier/edit/${supplier.id}">Редактирование информации</a>
+</#if>
 </body>
 </html>

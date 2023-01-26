@@ -3,6 +3,7 @@ package com.db.kursach.models;
 
 import com.db.kursach.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,21 +16,25 @@ import java.util.Collections;
 @Table(name = "users")
 @Data
 public class User implements UserDetails {
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;*/
     @Id
-    @Column(name = "login")
-    private String login;
+    @Column(name="email")
+    private String email;
+
     @Column(name = "password")
     private String password;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "employee_id")
-    private Employee worker;
-    @JoinColumn(name="position_id")
+    @Column(name="role")
     private Role role;
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "employee_id")
+    private Employee employee;
+
+    public boolean isWaiter() { return role.equals(Role.ROLE_WAITER);}
+    public boolean isAccountant() {return role.equals(Role.ROLE_ACCOUNTANT);}
+    public boolean isAdministrator() {return role.equals(Role.ROLE_ADMINISTRATOR);}
+    public boolean isDirector() {return role.equals(Role.ROLE_DIRECTOR);}
+    public Employee getEmployee(){
+        return employee;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -38,7 +43,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override

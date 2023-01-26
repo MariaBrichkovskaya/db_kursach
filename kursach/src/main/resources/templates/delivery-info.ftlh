@@ -15,10 +15,13 @@
 
 <b>Дата поставки </b>${delivery.date}<br>
 <hr>
+<#if !user.isAccountant()>
 <h3>Удаление поставки</h3>
 <form action="/delivery/delete/${delivery.id}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Удалить поставку"/>
 </form><br>
 <a href="/delivery/edit/${delivery.id}">Редактирование информации</a>
+</#if>
 </body>
 </html>
