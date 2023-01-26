@@ -1,7 +1,9 @@
 package com.db.kursach.services;
 
 import com.db.kursach.models.Employee;
+import com.db.kursach.models.User;
 import com.db.kursach.repositories.EmployeeRepository;
+import com.db.kursach.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final UserRepository userRepository;
 
     public List<Employee> listEmployees(String fullName){
         if(fullName!=null) return employeeRepository.findByFullNameContaining(fullName);
@@ -49,7 +52,10 @@ public class EmployeeService {
         employee1.setPosition1(employee.getPosition1());
         employee1.setSalary(employee.getSalary());
         employee1.setEmail(employee.getEmail());
-        employeeRepository.save(employeeRepository.findById(id).orElse(null));
+        User user = userRepository.findByEmployeeId(employee.getId());
+        user.setEmail(employee.getEmail());
+        userRepository.save(userRepository.findByEmployeeId(employee.getId()));
+        employeeRepository.save(employeeRepository.findById(id).orElseThrow());
     }
 
 }

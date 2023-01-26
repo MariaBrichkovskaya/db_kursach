@@ -80,8 +80,9 @@ public class EmployeeController {
     @PostMapping("/employee/editing/{id}")
     public String editingEmployee(@PathVariable Long id,Principal principal,Employee employee)
     {
-        if(userService.getUserByPrincipal(principal).getEmployee().getId()!=employee.getId() &&
-                userService.getUserByPrincipal(principal).isWaiter()) return  "redirect:/employee/{id}";
+        User user = userService.getUserByPrincipal(principal);
+        if(user.getEmployee().getId()!=employee.getId() &&
+                user.isWaiter()) return  "redirect:/employee/{id}";
         employeeService.editEmployee(id,employee);
         return "redirect:/employee/{id}";
     }
