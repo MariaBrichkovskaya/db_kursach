@@ -1,5 +1,6 @@
 package com.db.kursach.services;
 
+import com.db.kursach.enums.Role;
 import com.db.kursach.models.Employee;
 import com.db.kursach.models.User;
 import com.db.kursach.repositories.EmployeeRepository;
@@ -16,7 +17,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
+    public final EmployeeRepository employeeRepository;
+    private final UserService userService;
     private final UserRepository userRepository;
 
     public List<Employee> listEmployees(String fullName){
@@ -40,7 +42,10 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
+        return employeeRepository.findById(id).orElseThrow();
+    }
+    public Employee getEmployeeByEmail(String email) {
+        return employeeRepository.findByEmail(email);
     }
     public void editEmployee(Long id, Employee employee){
         Employee employee1=employeeRepository.findById(id).orElseThrow();
@@ -54,8 +59,9 @@ public class EmployeeService {
         employee1.setEmail(employee.getEmail());
         User user = userRepository.findByEmployeeId(employee.getId());
         user.setEmail(employee.getEmail());
-        userRepository.save(userRepository.findByEmployeeId(employee.getId()));
+        user=userService.setUserRole(employee, user);
         employeeRepository.save(employeeRepository.findById(id).orElseThrow());
+        userRepository.save(user);
     }
 
 }

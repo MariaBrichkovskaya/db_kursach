@@ -2,9 +2,12 @@ package com.db.kursach.controllers;
 
 import com.db.kursach.models.Employee;
 import com.db.kursach.models.User;
+import com.db.kursach.repositories.EmployeeRepository;
+import com.db.kursach.repositories.UserRepository;
 import com.db.kursach.services.EmployeeService;
 import com.db.kursach.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,10 +25,12 @@ import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER', 'ROLE_ACCOUNTANT')")
 public class EmployeeController {
-
     private final EmployeeService employeeService;
+    private final EmployeeService employeeService1;
     private final UserService userService;
+    private final EmployeeRepository employeeRepository;
     @GetMapping("/employees")
     public String employees(@RequestParam(name = "fullName",required = false) String fullName, Principal principal, Model model){
         model.addAttribute("employees",employeeService.listEmployees(fullName));
@@ -53,6 +58,7 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return "redirect:/employees";
     }
+
     @GetMapping("/employee/{id}")
     public String employeeInfo(@PathVariable Long id,Model model, Principal principal){
         Employee employee=employeeService.getEmployeeById(id);
@@ -62,7 +68,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}/image")
-    private ResponseEntity<?> getEmployeeImage(@PathVariable Long id){
+    public ResponseEntity<?> getEmployeeImage(@PathVariable Long id){
         Employee employee=employeeService.getEmployeeById(id);
         return ResponseEntity.ok()
                 .body(new InputStreamResource(new ByteArrayInputStream(employee.getImage_bytes())));

@@ -47,7 +47,7 @@ public class Employee {
     @JoinColumn(name = "position_id")
     private Position position1;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employee")
     private User user;
 
     public String toStringSalary(){return salary.toString();}

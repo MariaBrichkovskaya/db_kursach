@@ -15,6 +15,7 @@ import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER', 'ROLE_ACCOUNTANT')")
 public class SupplierController {
     private final SupplierService supplierService;
     private final UserService userService;

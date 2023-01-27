@@ -3,6 +3,7 @@ package com.db.kursach.controllers;
 import com.db.kursach.models.User;
 import com.db.kursach.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +29,5 @@ public class UserController {
             return "registration";
         }
         return "redirect:/login";
-    }
-    @GetMapping("/hello")
-    public String securityUrl(){
-        return "hello";
     }
 }

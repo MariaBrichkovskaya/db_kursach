@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER', 'ROLE_ACCOUNTANT')")
 public class DeliveryController {
     private final DeliveryService deliveryService;
     private final SupplierService supplierService;

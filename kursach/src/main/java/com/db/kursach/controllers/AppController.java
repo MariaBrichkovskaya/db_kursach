@@ -1,5 +1,6 @@
 package com.db.kursach.controllers;
 
+import com.db.kursach.models.User;
 import com.db.kursach.repositories.viewsRepository.WellPaidEmployeesRepository;
 import com.db.kursach.services.EmployeeService;
 import com.db.kursach.services.ProductService;
@@ -18,6 +19,7 @@ public class AppController {
     private final EmployeeService employeeService;
     private final UserService userService;
     private final WellPaidEmployeesRepository wellPaidEmployeesRepository;
+    User user;
 
     @GetMapping("/")
     public String main_page(Principal principal, Model model){
