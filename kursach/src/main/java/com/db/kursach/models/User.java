@@ -18,6 +18,9 @@ import java.util.Collections;
 @Data
 public class User implements UserDetails {
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @Column(name="email")
     private String email;
 
