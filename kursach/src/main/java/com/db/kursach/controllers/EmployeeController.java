@@ -28,9 +28,9 @@ import java.security.Principal;
 @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER', 'ROLE_ACCOUNTANT')")
 public class EmployeeController {
     private final EmployeeService employeeService;
-    private final EmployeeService employeeService1;
+    //private final EmployeeService employeeService1;
     private final UserService userService;
-    private final EmployeeRepository employeeRepository;
+    //private final EmployeeRepository employeeRepository;
     @GetMapping("/employees")
     public String employees(@RequestParam(name = "fullName",required = false) String fullName, Principal principal, Model model){
         model.addAttribute("employees",employeeService.listEmployees(fullName));

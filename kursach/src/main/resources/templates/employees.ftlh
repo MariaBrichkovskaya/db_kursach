@@ -43,7 +43,7 @@
             <option value="7">Кассир</option></select></p><br>
     Опыт работы <input type="number" min="0" name="experience"/><br><br>
     Заработная плата <input type="number" min="0" name="salary"/><br><br>
-    Электронная почта <input type="text" name="email"/><br><br>
+    Электронная почта <input type="email" name="email"/><br><br>
     Номер телефона <input type="text" maxlength="13" minlength="13" name="phone"/><br><br>
     Дата приема на работу <input type="date" name="date"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">

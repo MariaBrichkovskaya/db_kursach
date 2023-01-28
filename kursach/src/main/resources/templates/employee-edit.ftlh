@@ -30,7 +30,7 @@
             <input type="hidden" name="experience" value="${employee.experience}">
             <input type="hidden" name="salary" value="${employee.salary}">
     </#if>
-    Электронная почта <input type="text" value="${employee.email}"  name="email"/><br><br>
+    Электронная почта <input type="email" value="${employee.email}"  name="email"/><br><br>
     Номер телефона <input type="text" value="${employee.phone}" maxlength="13" minlength="13" name="phone"/><br><br>
     Дата приема на работу <input type="date" value="${employee.date}" name="date"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">

@@ -20,21 +20,22 @@ public class UserService {
     private final EmployeeRepository employeeRepository;
     private final PasswordEncoder passwordEncoder;
     public boolean createUser(User user){
-        if(userRepository.findByEmail(user.getEmail())!=null || employeeRepository.findByEmail(user.getEmail())==null){
+        if(userRepository.findByEmail(user.getEmail())!=null || employeeRepository.findByEmail(user.getEmail())==null||userRepository.findByLogin(user.getLogin())!=null){
             return false;
         }
+
         Employee employee = employeeRepository.findByEmail(user.getEmail());
         user.setEmployee(employee);
         user=setUserRole(employee, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        log.info("Saving new user with login {}",user.getEmail());
+        log.info("Saving new user with login {}",user.getLogin());
         userRepository.save(user);
         return true;
     }
 
     public User getUserByPrincipal(Principal principal) {
         if(principal==null)return new User();
-        return userRepository.findByEmail(principal.getName());
+        return userRepository.findByLogin(principal.getName());
     }
 
     public User setUserRole(Employee employee, User user) {
