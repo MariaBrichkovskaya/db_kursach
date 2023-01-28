@@ -28,11 +28,11 @@
 <#if user.isAdministrator() || user.isDirector()>
 <h3>Добавление нового поставщика</h3>
 <form action="/supplier/create" method="post" enctype="multipart/form-data">
-    Наименование фирмы-поставщика <input type="text"  name="name"/><br><br>
-    Страна <input type="text"  name="country"/><br><br>
-    Город <input type="text" name="city"/><br><br>
-    Адрес <input type="text" name="address"/><br><br>
-    Номер телефона <input type="text" maxlength="13" minlength="13" name="phone"/><br><br>
+    Наименование фирмы-поставщика <input type="text" required name="name"/><br><br>
+    Страна <input type="text" required name="country"/><br><br>
+    Город <input type="text" required name="city"/><br><br>
+    Адрес <input type="text" required name="address"/><br><br>
+    Номер телефона <input type="text" required maxlength="13" minlength="13" name="phone"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить поставщика"/>
 </form>

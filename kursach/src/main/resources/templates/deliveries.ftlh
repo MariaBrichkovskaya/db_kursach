@@ -18,21 +18,21 @@
 <#if !user.isAccountant()>
 <h3>Добавление новой поставки</h3>
 <form action="/delivery/create" method="post" enctype="multipart/form-data">
-    Дата поставки <input type="date" pattern="yyyy-MM-dd" name="date"/><br><br>
-    Поставщик <p><select name="supplier.id">
+    Дата поставки <input type="date" required pattern="yyyy-MM-dd" name="date"/><br><br>
+    Поставщик <p><select name="supplier.id" required>
             <option value="">Выберите поставщика</option>
             <#list suppliers as supplier>
                 <option value="${supplier.id}">${supplier.name}</option>
             </#list>
           </select></p><br>
-    Продукт <p><select name="product.id">
+    Продукт <p><select name="product.id" required>
             <option value="">Выберите продукт</option>
             <#list products as product>
                 <option value="${product.id}">${product.name}</option>
             </#list>
         </select></p><br>
-    Количество <input type="number" min="1" step="1" name="amount"/><br><br>
-    Принимающий поставку работник <p><select name="employee.id">
+    Количество <input type="number" required min="1" step="1" name="amount"/><br><br>
+    Принимающий поставку работник <p><select name="employee.id" required>
             <option value="">Выберите работника</option>
             <#list employees as employee>
                 <option value="${employee.id}">${employee.fullName}</option>

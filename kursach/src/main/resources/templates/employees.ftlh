@@ -32,8 +32,8 @@
 <#if user.isDirector() || user.isAdministrator()>
 <h3>Добавление нового сотрудника</h3>
 <form action="/employee/create" method="post" enctype="multipart/form-data">
-    ФИО <input type="text" size="40" name="fullName"/><br><br>
-    Должность <p><select name="position1.id">
+    ФИО <input type="text" required size="40" name="fullName"/><br><br>
+    Должность <p><select name="position1.id" required>
             <option value="">Выберите должность</option>
             <option value="2">Менеджер</option>
             <option value="3">Бариста</option>
@@ -41,11 +41,11 @@
             <option value="5">Бухгалтер</option>
             <option value="6">Управляющий</option>
             <option value="7">Кассир</option></select></p><br>
-    Опыт работы <input type="number" min="0" name="experience"/><br><br>
-    Заработная плата <input type="number" min="0" name="salary"/><br><br>
-    Электронная почта <input type="email" name="email"/><br><br>
-    Номер телефона <input type="text" maxlength="13" minlength="13" name="phone"/><br><br>
-    Дата приема на работу <input type="date" name="date"/><br><br>
+    Опыт работы <input type="number" required min="0" name="experience"/><br><br>
+    Заработная плата <input type="number" required min="0" name="salary"/><br><br>
+    Электронная почта <input type="email" required name="email"/><br><br>
+    Номер телефона <input type="text" required maxlength="13" minlength="13" name="phone"/><br><br>
+    Дата приема на работу <input type="date" required name="date"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить сотрудника"/>
 </form>
