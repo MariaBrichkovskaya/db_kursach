@@ -7,6 +7,9 @@ import com.db.kursach.repositories.EmployeeRepository;
 import com.db.kursach.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,6 @@ public class UserService {
         if(userRepository.findByEmail(user.getEmail())!=null || employeeRepository.findByEmail(user.getEmail())==null||userRepository.findByLogin(user.getLogin())!=null){
             return false;
         }
-
         Employee employee = employeeRepository.findByEmail(user.getEmail());
         user.setEmployee(employee);
         user=setUserRole(employee, user);
@@ -47,5 +49,32 @@ public class UserService {
             default: user.setRole(Role.ROLE_WAITER); break;
         }
         return user;
+    }
+
+    public void editUser(Long id, User user) {
+        User userToEdit = userRepository.findById(id).orElseThrow();
+        userToEdit.setLogin(user.getLogin());
+        userToEdit.setPassword(user.getPassword());
+        userRepository.save(userRepository.findById(id).orElseThrow());
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow();
+    }
+
+    public Boolean doPasswordsMatch(String rawPassword,String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
+    public String doPasswordEncode(String password) {
+        return passwordEncoder.encode(password);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+    public void updatePrincipal(User user) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

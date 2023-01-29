@@ -23,11 +23,12 @@ public class DeliveryController {
     private final ProductService productService;
     private final EmployeeService employeeService;
     private final UserService userService;
+    private final AppController appController;
     @GetMapping("/deliveries")
-    public String deliveries(Principal principal, Model model){
+    public String deliveries(Model model){
         List<Delivery> listDeliveries = deliveryService.listDeliveries();
         listDeliveries.sort(Comparator.comparing(Delivery::getDate).reversed());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        model.addAttribute("user",appController.user);
         model.addAttribute("deliveries",listDeliveries);
         model.addAttribute("suppliers",supplierService.listSuppliers());
         model.addAttribute("products",productService.listProducts());
@@ -36,9 +37,9 @@ public class DeliveryController {
     }
 
     @GetMapping("/delivery/{id}")
-    public String deliveryInfo(@PathVariable Long id, Principal principal, Model model){
+    public String deliveryInfo(@PathVariable Long id, Model model){
         Delivery delivery = deliveryService.getDeliveryById(id);
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        model.addAttribute("user",appController.user);
         model.addAttribute("delivery", delivery);
         return "delivery-info";
     }
@@ -56,10 +57,10 @@ public class DeliveryController {
     }
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER')")
     @GetMapping("/delivery/edit/{id}")
-    public String editDelivery(@PathVariable Long id,User user, Model model)
+    public String editDelivery(@PathVariable Long id, Model model)
     {
         Delivery delivery=deliveryService.getDeliveryById(id);
-        model.addAttribute("user",user);
+        model.addAttribute("user",appController.user);
         model.addAttribute("delivery",delivery);
         model.addAttribute("suppliers",supplierService.listSuppliers());
         model.addAttribute("products",productService.listProducts());

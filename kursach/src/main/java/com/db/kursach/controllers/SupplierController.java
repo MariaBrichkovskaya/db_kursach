@@ -19,16 +19,17 @@ import java.security.Principal;
 public class SupplierController {
     private final SupplierService supplierService;
     private final UserService userService;
+    private final AppController appController;
     @GetMapping("/suppliers")
-    public String suppliers(Principal principal, Model model) {
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+    public String suppliers(Model model) {
+        model.addAttribute("user", appController.user);
         model.addAttribute("suppliers", supplierService.listSuppliers());
         return "suppliers";
     }
     @GetMapping("/supplier/{id}")
-    public String supplierInfo(@PathVariable Long id, Principal principal, Model model){
+    public String supplierInfo(@PathVariable Long id, Model model){
         Supplier supplier =supplierService.getSupplierById(id);
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        model.addAttribute("user", appController.user);
         model.addAttribute("supplier",supplier);
         return "supplier-info";
     }

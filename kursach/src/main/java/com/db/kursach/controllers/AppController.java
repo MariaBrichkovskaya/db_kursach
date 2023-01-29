@@ -1,5 +1,6 @@
 package com.db.kursach.controllers;
 
+import com.db.kursach.models.Employee;
 import com.db.kursach.models.User;
 import com.db.kursach.repositories.viewsRepository.WellPaidEmployeesRepository;
 import com.db.kursach.services.EmployeeService;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
@@ -23,6 +26,7 @@ public class AppController {
 
     @GetMapping("/")
     public String main_page(Principal principal, Model model){
+        user=userService.getUserByPrincipal(principal);
         model.addAttribute("user", userService.getUserByPrincipal(principal));
         return "main-page";
     }

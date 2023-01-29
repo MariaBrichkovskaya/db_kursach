@@ -1,5 +1,6 @@
 package com.db.kursach.controllers;
 
+import com.db.kursach.enums.Role;
 import com.db.kursach.models.Employee;
 import com.db.kursach.models.User;
 import com.db.kursach.repositories.EmployeeRepository;
@@ -29,14 +30,14 @@ import java.security.Principal;
 public class EmployeeController {
     private final EmployeeService employeeService;
     //private final EmployeeService employeeService1;
+    private final AppController appController;
     private final UserService userService;
-    //private final EmployeeRepository employeeRepository;
     @GetMapping("/employees")
-    public String employees(@RequestParam(name = "fullName",required = false) String fullName, Principal principal, Model model){
+    public String employees(@RequestParam(name = "fullName",required = false) String fullName, Model model){
         model.addAttribute("employees",employeeService.listEmployees(fullName));
         String searchString = "";
         if (fullName != null) searchString =fullName;
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        model.addAttribute("user",appController.user);
         model.addAttribute("searchString", searchString);
         return "employees";
     }
@@ -60,9 +61,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}")
-    public String employeeInfo(@PathVariable Long id,Model model, Principal principal){
+    public String employeeInfo(@PathVariable Long id,Model model){
         Employee employee=employeeService.getEmployeeById(id);
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        model.addAttribute("user", appController.user);
         model.addAttribute("employee",employee);
         return "employee-info";
     }
@@ -79,16 +80,15 @@ public class EmployeeController {
     {   if(userService.getUserByPrincipal(principal).getEmployee().getId()!=id &&
             userService.getUserByPrincipal(principal).isWaiter()) return "redirect:/employee/{id}";
         Employee employee=employeeService.getEmployeeById(id);
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        model.addAttribute("user",appController.user);
         model.addAttribute("employee",employee);
         return "employee-edit";
     }
     @PostMapping("/employee/editing/{id}")
-    public String editingEmployee(@PathVariable Long id,Principal principal,Employee employee)
+    public String editingEmployee(@PathVariable Long id, Employee employee)
     {
-        User user = userService.getUserByPrincipal(principal);
-        if(user.getEmployee().getId()!=employee.getId() &&
-                user.isWaiter()) return  "redirect:/employee/{id}";
+        if(appController.user.getEmployee().getId()!=employee.getId() &&
+                appController.user.isWaiter()) return  "redirect:/employee/{id}";
         employeeService.editEmployee(id,employee);
         return "redirect:/employee/{id}";
     }

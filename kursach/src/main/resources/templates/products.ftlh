@@ -32,7 +32,7 @@
 <form action="/product/create" method="post" enctype="multipart/form-data">
     Наименование <input type="text" required name="name"/><br><br>
     Калорийность <input type="number" required  name="calories" Ккал/><br><br>
-    Вес <input type="number" step="1" required name="weight" г/><br><br>
+    Вес <input type="number" step="1" required name="unitWeight" г/><br><br>
     Цена за единицу <input type="number" required step="0.01" name="price" руб./><br><br>
     Описание <input type="text"  name="description"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">

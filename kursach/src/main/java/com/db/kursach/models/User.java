@@ -19,7 +19,6 @@ import java.util.Collections;
 public class User implements UserDetails {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "login")
     private String login;
@@ -32,7 +31,7 @@ public class User implements UserDetails {
     @Column(name="role")
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="user_id", referencedColumnName = "employee_id")
     private Employee employee;
 

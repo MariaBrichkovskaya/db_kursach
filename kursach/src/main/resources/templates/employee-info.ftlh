@@ -27,6 +27,14 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Удалить работника"/>
 </form><br></#if>
+<#if user.isDirector() && employee.user?? && employee.id!=user.employee.id>
+    <h3>Удаление аккаунта</h3>
+    <form action="/user/delete/${employee.user.id}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="employeeId" value="${employee.id}">
+        <input type="hidden" name="directorId" value="${user.id}">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Удалить аккаунт"/>
+    </form><br></#if>
 <#if !(user.isWaiter() && (user.employee.id !=employee.id))>
 <a href="/employee/edit/${employee.id}">Редактирование информации</a>
 </#if>

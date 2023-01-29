@@ -65,7 +65,6 @@ public class EmployeeService {
             userRepository.save(user);
         }catch (NullPointerException e){
             Employee employee1=employeeRepository.findById(id).orElseThrow();
-            //User user = userRepository.findByEmployeeId(id);
             employee1.setDate(employee.getDate());
             employee1.setImage_bytes(employee1.getImage_bytes());
             employee1.setExperience(employee.getExperience());
@@ -74,10 +73,7 @@ public class EmployeeService {
             employee1.setPosition1(employee.getPosition1());
             employee1.setSalary(employee.getSalary());
             employee1.setEmail(employee.getEmail());
-            //user.setEmail(employee.getEmail());
-            //user=userService.setUserRole(employee, user);
             employeeRepository.save(employeeRepository.findById(id).orElseThrow());
-            //userRepository.save(user);
         }
 
     }

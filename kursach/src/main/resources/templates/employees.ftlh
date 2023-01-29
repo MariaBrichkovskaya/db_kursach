@@ -44,7 +44,7 @@
     Опыт работы <input type="number" required min="0" name="experience"/><br><br>
     Заработная плата <input type="number" required min="0" name="salary"/><br><br>
     Электронная почта <input type="email" required name="email"/><br><br>
-    Номер телефона <input type="text" required maxlength="13" minlength="13" name="phone"/><br><br>
+    Номер телефона <input type="text" required maxlength="13" minlength="11" name="phone"/><br><br>
     Дата приема на работу <input type="date" required name="date"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить сотрудника"/>

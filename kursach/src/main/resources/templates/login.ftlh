@@ -8,10 +8,10 @@
 <h4>Авторизация</h4>
 <form action="/login" method="post">
     Логин: <input type="text" required name="username"><br><br>
-    Пароль: <input type="password" required name="password"><br><br>
+    Пароль: <input type="password" name="password"><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Вход"/>
-</form>
+</form><br>
 <a href="/registration">Зарегистрироваться</a>
 </body>
 </html>

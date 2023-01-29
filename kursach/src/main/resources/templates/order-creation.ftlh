@@ -6,15 +6,6 @@
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>Дабавление заказа</h1><hr>
-<#if order.orderComposition??>
-<#list order.orderComposition as orderPosition>
-    <p><a href="/product/${orderPosition.product.id}">${orderPosition.product.name}</a> ${orderPosition.amount} шт.
-        <a href="/order/deletePosition/${orderPosition_index}">Удалить</a>
-    </p>
-</#list>
-    <#else>
-    <h3>Добавьте продукты в заказ</h3>
-</#if>
     <form action="/order/addProduct" method="post" enctype="multipart/form-data">
     Продукт <select name="productId">
             <option value="">Выберите продукт</option>
@@ -31,5 +22,14 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Заказ"/>
     </form>
+<#if order.orderComposition??>
+    <#list order.orderComposition as orderPosition>
+        <p><a href="/product/${orderPosition.product.id}">${orderPosition.product.name}</a> ${orderPosition.amount} шт.
+            <a href="/order/deletePosition/${orderPosition_index}">Удалить</a>
+        </p>
+    </#list>
+<#else>
+    <h3>Добавьте продукты в заказ</h3>
+</#if>
 </body>
 </html>

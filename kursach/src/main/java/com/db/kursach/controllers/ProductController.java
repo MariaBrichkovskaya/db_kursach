@@ -19,19 +19,20 @@ import java.security.Principal;
 public class ProductController {
     private final ProductService productService;
     private final UserService userService;
+    private final AppController appController;
 
     @GetMapping("/products")
-    public String products(Principal principal, Model model){
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+    public String products(Model model){
+        model.addAttribute("user", appController.user);
         model.addAttribute("products",productService.listProducts());
         return "products";
     }
 
 
     @GetMapping("/product/{id}")
-    public String productInfo(@PathVariable Long id, Principal principal, Model model){
+    public String productInfo(@PathVariable Long id, Model model){
         Product product=productService.getProductById(id);
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        model.addAttribute("user", appController.user);
         model.addAttribute("product",product);
         return "product-info";
     }

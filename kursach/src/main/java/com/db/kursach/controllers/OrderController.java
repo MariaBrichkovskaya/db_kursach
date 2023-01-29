@@ -30,27 +30,28 @@ public class OrderController {
     private final OrderService orderService;
     private final ProductService productService;
     private final UserService userService;
+    private final AppController appController;
     Order order;
     @GetMapping("/orders")
-    public String orders(Principal principal, Model model){
+    public String orders(Model model){
         List<Order> listOrders = orderService.listOrders();
         listOrders.sort(Comparator.comparing(Order::getTime).reversed());
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        model.addAttribute("user", appController.user);
         model.addAttribute("orders",listOrders);
         return "orders";
     }
     @GetMapping("/order/{id}")
-    public String orderInfo(@PathVariable Long id, Principal principal, Model model){
+    public String orderInfo(@PathVariable Long id, Model model){
         Order order = orderService.getOrderById(id);
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        model.addAttribute("user", appController.user);
         model.addAttribute("order",order);
         return "order-info";
     }
     @PostMapping("/order/create/start")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_WAITER', 'ROLE_DIRECTOR')")
-    public String startOrderCreation(Principal principal, Model model){
+    public String startOrderCreation(Model model){
         order = new Order();
-        order.setWaiter(userService.getUserByPrincipal(principal).getEmployee());
+        order.setWaiter(appController.user.getEmployee());
         order.setTime(new Date());
         order.setPrice(0.0);
         order.setDescription("");
@@ -77,8 +78,8 @@ public class OrderController {
 
     @PostMapping("/order/save")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_WAITER', 'ROLE_DIRECTOR')")
-    public String saveOrder(String description){
-        order.setDescription(description);
+    public String saveOrder(@RequestParam(name = "description", required = false) String description){
+        if(!description.isEmpty())order.setDescription(description);
         orderService.saveOrder(order);
         return "redirect:/orders";
     }
