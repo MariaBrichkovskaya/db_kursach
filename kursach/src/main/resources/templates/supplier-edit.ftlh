@@ -13,6 +13,7 @@
     Город <input type="text" value="${supplier.city}" name="city"/><br><br>
     Адрес <input type="text" value="${supplier.address}" name="address"/><br><br>
     Номер телефона <input type="text" value="${supplier.phone}" maxlength="13" minlength="13" name="phone"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Изменить поставщика"/>
 </form>
 </body>

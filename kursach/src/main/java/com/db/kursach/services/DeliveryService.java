@@ -11,11 +11,9 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-
 public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
-
     public List<Delivery> listDeliveries(){
         return deliveryRepository.findAll();
     }

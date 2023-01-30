@@ -23,17 +23,21 @@
     </#list>
 </table>
 <#else>
-    <h3>Заказов нет</h3>
+    <h3>Продуктов нет</h3>
 </#if>
+<br>
 <hr>
+<#if !user.isAccountant()>
 <h3>Добавление нового продукта</h3>
 <form action="/product/create" method="post" enctype="multipart/form-data">
-    Наименование <input type="text"  name="name"/><br><br>
-    Калорийность <input type="number"  name="calories" Ккал/><br><br>
-    Вес <input type="number" step="1" name="weight" г/><br><br>
-    Цена за единицу <input type="number" step="0.01" name="price" руб./><br><br>
+    Наименование <input type="text" required name="name"/><br><br>
+    Калорийность <input type="number" required  name="calories" Ккал/><br><br>
+    Вес <input type="number" step="1" required name="unitWeight" г/><br><br>
+    Цена за единицу <input type="number" required step="0.01" name="price" руб./><br><br>
     Описание <input type="text"  name="description"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить продукт"/>
 </form>
+</#if>
 </body>
 </html>

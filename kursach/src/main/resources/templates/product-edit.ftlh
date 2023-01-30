@@ -14,7 +14,8 @@
     Цена за единицу <input type="number" value="${product.toStringPrice()}" step="0.01" name="price" руб./><br><br>
     Количество на складе <input type="number" value="${product.toStringAmount()}" step="1" name="amount" шт./><br><br>
     Описание <input type="text" value="${product.description}"  name="description"/><br><br>
-    <input type="submit" value="Изменить продукт"/>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Сохранить"/>
 </form>
 </body>
 </html>
