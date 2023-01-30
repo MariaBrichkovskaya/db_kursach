@@ -40,6 +40,11 @@ public class EmployeeService {
     public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
     }
+    public void deleteImage(Long id){
+        Employee employee= getEmployeeById(id);
+        employee.setImage_bytes(null);
+        employeeRepository.save(employee);
+    }
 
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id).orElseThrow();

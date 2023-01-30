@@ -52,6 +52,12 @@ public class EmployeeController {
         employeeService.saveImage(file,id);
         return "redirect:/employee/{id}";
     }
+    @PostMapping("/employee/{id}/delete/image")
+    public String deleteImage(@PathVariable Long id){
+        employeeService.deleteImage(id);
+        return "redirect:/employee/{id}";
+    }
+
 
     @PostMapping("/employee/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR')")

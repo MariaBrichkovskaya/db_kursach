@@ -7,6 +7,12 @@
 <a href="/">Вернуться на главную</a>
 <hr>
 <h3>Редактирование информации о работнике</h3>
+<#if employee.image_bytes??>
+    <br> <form action="/employee/${employee.id}/delete/image" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Удалить фото"/>
+</form><br><br>
+</#if>
 <form action="/employee/${employee.id}/trash" method="post" enctype="multipart/form-data">
     <input type="file" name="file"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
