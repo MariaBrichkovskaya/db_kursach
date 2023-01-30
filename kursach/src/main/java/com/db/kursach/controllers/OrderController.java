@@ -80,6 +80,7 @@ public class OrderController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_WAITER', 'ROLE_DIRECTOR')")
     public String saveOrder(@RequestParam(name = "description", required = false) String description){
         if(!description.isEmpty())order.setDescription(description);
+        if (order.getOrderComposition().isEmpty())return "redirect:/order/create";
         orderService.saveOrder(order);
         return "redirect:/orders";
     }

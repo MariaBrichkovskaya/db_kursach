@@ -22,11 +22,10 @@ public class AppController {
     private final EmployeeService employeeService;
     private final UserService userService;
     private final WellPaidEmployeesRepository wellPaidEmployeesRepository;
-    User user;
+    public User user;
 
     @GetMapping("/")
     public String main_page(Principal principal, Model model){
-        user=userService.getUserByPrincipal(principal);
         model.addAttribute("user", userService.getUserByPrincipal(principal));
         return "main-page";
     }
