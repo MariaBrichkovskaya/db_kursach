@@ -5,6 +5,7 @@ import com.db.kursach.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
+//import org.springframework.security.authentication.eventmain.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
 
 
