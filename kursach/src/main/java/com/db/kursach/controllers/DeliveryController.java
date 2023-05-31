@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -25,13 +27,16 @@ public class DeliveryController {
     private final UserService userService;
     private final AppController appController;
     @GetMapping("/deliveries")
-    public String deliveries(Model model){
-        List<Delivery> listDeliveries = deliveryService.listDeliveries();
+    public String deliveries(@RequestParam(name = "date",required = false) LocalDate date, Model model){
+        List<Delivery> listDeliveries = deliveryService.listDeliveries(date);
         listDeliveries.sort(Comparator.comparing(Delivery::getDate).reversed());
-        model.addAttribute("user",appController.user);
         model.addAttribute("deliveries",listDeliveries);
-        model.addAttribute("suppliers",supplierService.listSuppliers());
-        model.addAttribute("products",productService.listProducts());
+        LocalDate searchField = LocalDate.now();
+        if (date != null) searchField =date;
+        model.addAttribute("searchField", searchField);
+        model.addAttribute("user",appController.user);
+        model.addAttribute("suppliers",supplierService.listSuppliers(null));
+        model.addAttribute("products",productService.listProducts(null));
         model.addAttribute("employees",employeeService.listEmployees(null));
         return "deliveries";
     }
@@ -62,8 +67,8 @@ public class DeliveryController {
         Delivery delivery=deliveryService.getDeliveryById(id);
         model.addAttribute("user",appController.user);
         model.addAttribute("delivery",delivery);
-        model.addAttribute("suppliers",supplierService.listSuppliers());
-        model.addAttribute("products",productService.listProducts());
+        model.addAttribute("suppliers",supplierService.listSuppliers(null));
+        model.addAttribute("products",productService.listProducts(null));
         model.addAttribute("employees",employeeService.listEmployees(null));
         return "delivery-edit";
     }

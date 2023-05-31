@@ -44,7 +44,7 @@ public class UserService {
         switch (Math.toIntExact(employee.getPosition1().getId())){
             case 1: user.setRole(Role.ROLE_DIRECTOR); break;
             case 2,6: user.setRole(Role.ROLE_ADMINISTRATOR); break;
-            case 3,4,7: user.setRole(Role.ROLE_WAITER); break;
+            //case 3,4,7: user.setRole(Role.ROLE_WAITER); break;
             case 5: user.setRole(Role.ROLE_ACCOUNTANT); break;
             default: user.setRole(Role.ROLE_WAITER); break;
         }

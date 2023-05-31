@@ -19,7 +19,8 @@ import java.util.Collections;
 public class User implements UserDetails {
     @Id
     @Column(name = "id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "login")
     private String login;
 

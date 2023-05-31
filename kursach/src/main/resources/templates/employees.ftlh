@@ -2,14 +2,17 @@
 <html>
 <head>
     <title>CAFE</title>
+
 </head>
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>CAFE</h1><hr>
 <h4>Работники нашего прекрасного заведения</h4>
 <form action="/employees" method="get">
-    Поиск по ФИО <input type="search" id="fio" size="40" name="fullName" oninput="form.submit()" value="${searchString}" autofocus onfocus="fio.setSelectionRange(fio.value.length, fio.value.length)"/>
+    Поиск по ФИО <input type="search" id="fio" size="40" name="fullName" oninput="form.submit()"
+                        value="${searchString}" autofocus onfocus="fio.setSelectionRange(fio.value.length, fio.value.length)"/>
 </form><br>
+
 <#if employees?has_content>
 <table border="1">
     <tr>

@@ -25,7 +25,7 @@ public class EmployeeService {
         if(fullName!=null) return employeeRepository.findByFullNameContaining(fullName);
         return employeeRepository.findAll();
     }
-    public void saveEmployee(Employee employee) throws IOException {
+    public void saveEmployee(Employee employee) {
         log.info("Saving new Employee.{}",employee);
         employeeRepository.save(employee);
     }

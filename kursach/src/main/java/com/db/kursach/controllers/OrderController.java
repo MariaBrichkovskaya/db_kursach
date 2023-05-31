@@ -57,7 +57,7 @@ public class OrderController {
         order.setDescription("");
         order.setOrderComposition(new ArrayList<>());
         model.addAttribute("order", order);
-        model.addAttribute("products", productService.listProducts());
+        model.addAttribute("products", productService.listProducts(null));
         model.addAttribute("employee", order.getWaiter());
         return "order-creation";
     }
@@ -66,7 +66,7 @@ public class OrderController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_WAITER', 'ROLE_DIRECTOR')")
     public String orderCreation(Model model){
         model.addAttribute("order", order);
-        model.addAttribute("products", productService.listProducts());
+        model.addAttribute("products", productService.listProducts(null));
         return "order-creation";
     }
     @PostMapping("/order/addProduct")

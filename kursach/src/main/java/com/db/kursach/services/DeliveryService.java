@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -14,7 +15,8 @@ import java.util.List;
 public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
-    public List<Delivery> listDeliveries(){
+    public List<Delivery> listDeliveries(LocalDate date){
+        if(date!=null) return deliveryRepository.findByDate(date);
         return deliveryRepository.findAll();
     }
 

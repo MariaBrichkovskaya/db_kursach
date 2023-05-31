@@ -17,7 +17,8 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public List<Product> listProducts(){
+    public List<Product> listProducts(String name){
+        if(name!=null) return productRepository.findByNameContaining(name);
         return productRepository.findAll();
     }
     public Product getProductById(Long id) {

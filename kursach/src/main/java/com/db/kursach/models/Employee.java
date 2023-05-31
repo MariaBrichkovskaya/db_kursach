@@ -51,7 +51,4 @@ public class Employee {
     private User user;
 
     public String toStringSalary(){return salary.toString();}
-
-
-
 }

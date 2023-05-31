@@ -12,6 +12,7 @@
         <input type="submit" value="Добавить новый заказ"/>
     </form>
 </#if>
+
 <h4>Заказы, сделанные в нашем прекрасном заведении</h4>
 <#list orders as order>
     <div>

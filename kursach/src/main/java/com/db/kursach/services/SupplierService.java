@@ -13,7 +13,9 @@ import java.util.List;
 public class SupplierService {
     private final SupplierRepository supplierRepository;
 
-    public List<Supplier> listSuppliers(){
+    public List<Supplier> listSuppliers(String name){
+
+        if(name!=null) return supplierRepository.findByNameContaining(name);
         return supplierRepository.findAll();
     }
     public Supplier getSupplierById(Long id) {

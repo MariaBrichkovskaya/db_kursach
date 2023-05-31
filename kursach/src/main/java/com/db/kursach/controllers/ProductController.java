@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -22,9 +23,12 @@ public class ProductController {
     private final AppController appController;
 
     @GetMapping("/products")
-    public String products(Model model){
+    public String products(@RequestParam(name = "name",required = false) String name, Model model){
+        model.addAttribute("products",productService.listProducts(name));
+        String searchString = "";
+        if (name != null) searchString =name;
         model.addAttribute("user", appController.user);
-        model.addAttribute("products",productService.listProducts());
+        model.addAttribute("searchString", searchString);
         return "products";
     }
 

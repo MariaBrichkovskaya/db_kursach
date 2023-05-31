@@ -6,6 +6,10 @@
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>Наши поставщики</h1><hr>
+<form action="/suppliers" method="get">
+    Поиск по названию поставщика <input type="search" id="supplierSearch" size="40" name="name" oninput="form.submit()"
+                                      value="${searchString}" autofocus onfocus="supplierSearch.setSelectionRange(supplierSearch.value.length, supplierSearch.value.length)"/>
+</form><br>
 <#if suppliers?has_content>
 <table border="1">
     <tr>

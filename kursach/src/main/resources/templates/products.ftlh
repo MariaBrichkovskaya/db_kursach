@@ -6,6 +6,10 @@
 <body>
 <a href="/">Вернуться на главную</a>
 <h1>Продукты</h1><hr>
+<form action="/products" method="get">
+    Поиск по названию продукта <input type="search" id="productSearch" size="40" name="name" oninput="form.submit()"
+                        value="${searchString}" autofocus onfocus="productSearch.setSelectionRange(productSearch.value.length, productSearch.value.length)"/>
+</form><br>
 <#if products?has_content>
 <table border="1">
     <tr>

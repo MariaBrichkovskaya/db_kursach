@@ -29,7 +29,6 @@ import java.security.Principal;
 @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR', 'ROLE_DIRECTOR', 'ROLE_WAITER', 'ROLE_ACCOUNTANT')")
 public class EmployeeController {
     private final EmployeeService employeeService;
-    //private final EmployeeService employeeService1;
     private final AppController appController;
     private final UserService userService;
     @GetMapping("/employees")

@@ -33,7 +33,7 @@ public class AppController {
     @GetMapping("/views")
     public String views(Model model){
         model.addAttribute("employees", employeeService.listEmployees(null));
-        model.addAttribute("products",productService.listProducts());
+        model.addAttribute("products",productService.listProducts(null));
         model.addAttribute("wellPaidEmployees", wellPaidEmployeesRepository.findAll());
         return "views";
     }
