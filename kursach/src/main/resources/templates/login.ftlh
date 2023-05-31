@@ -58,10 +58,17 @@
             flex-direction: column;
             align-items: center;
         }
+        .b1 {
+            background-color: #e8d4e2; /* Синий цвет фона */
+            color: #6c5b7b; /* Белый цвет текста */
+            border: none; /* Убираем рамку */
+            padding: 1rem 1.5rem; /* Поля вокруг текста */
+            margin-bottom: 1rem; /* Отступ снизу */
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
-<body style="background-color: #c9b8cc">
+<body style="background-color: #E6E6FA">
 <h1 style="text-align: center;">CAFE MASHA</h1>
 <hr>
 <h4 style="text-align: center;">Авторизация</h4>
@@ -70,7 +77,7 @@
     <p>Логин: <input type="text" required name="username"></p>
     <p>Пароль: <input type="password" name="password"></p>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input style="margin-top: 10px;margin-bottom: 20px;" type="submit" value="Вход"/>
+    <input style="margin-top: 10px;margin-bottom: 20px;" type="submit" class="b1" value="Вход"/>
 </form>
 <div style="text-align: center;">
     <a href="/registration" class="text-dark">Зарегистрироваться</a>
